@@ -7,7 +7,7 @@ export const CartPrices = () => {
         <span>
           Total count
         </span>
-        <span className={s.info}>
+        <span className={s.count}>
           3 items
         </span>
       </div>
@@ -15,7 +15,7 @@ export const CartPrices = () => {
         <span>
           Price without discount
         </span>
-        <span className={s.info}>
+        <span className={s.infoPrice}>
           $700
         </span>
       </div>
@@ -24,7 +24,7 @@ export const CartPrices = () => {
         <span>
           Total price
         </span>
-        <span className={s.info}>
+        <span className={s.infoPrice}>
           $590
         </span>
       </div>
