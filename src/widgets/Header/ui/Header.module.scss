@@ -1,0 +1,51 @@
+@import "../../../shared/variables";
+
+.header {
+    padding: 23px 130px;
+    background-color: $violet;
+    color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    font-weight: $bold;
+    font-size: $extra-2-large;
+    color: white;
+    line-height: 44px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    font-weight: $semi-bold;
+    font-size: $small;
+    line-height: 20px;
+}
+
+.navLink {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
+    text-decoration: none;
+}
+
+.counter {
+    position: absolute;
+    text-align: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: $orange;
+    font-size: 6px;
+    line-height: 14px;
+    color: white;
+    right: -3px;
+    bottom: -6px;
+}

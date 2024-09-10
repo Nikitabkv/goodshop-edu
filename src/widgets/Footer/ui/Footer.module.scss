@@ -1,0 +1,36 @@
+@import "../../../shared/variables";
+
+.footer {
+    padding: 23px 130px;
+    background-color: $gray-900;
+    color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    font-weight: $bold;
+    font-size: $extra-2-large;
+    line-height: 44px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    font-weight: $semi-bold;
+    font-size: $small;
+    line-height: 20px;
+}
+
+.navLink {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
+    text-decoration: none;
+}

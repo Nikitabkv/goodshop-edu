@@ -4,19 +4,21 @@ import './index.scss'
 import {
   createBrowserRouter,
   RouterProvider,
-} from "react-router-dom";
+} from "react-router-dom"
 import MainPage from "./pages/MainPage"
 import Cart from "./pages/Cart"
-import {NotFoundPage} from "./pages/NotFoundPage/ui/NotFoundPage.tsx";
+import NotFoundPage from "./pages/NotFoundPage"
+import Header from "./widgets/Header"
+import Footer from "./widgets/Footer"
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainPage />,
+    element: <><Header /><MainPage /><Footer/></>,
   },
   {
     path: "/cart",
-    element: <Cart />,
+    element: <><Header /><Cart /><Footer/></>,
   },
   {
     path: "*",
