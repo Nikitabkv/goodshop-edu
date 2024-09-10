@@ -1,7 +1,9 @@
 @import "../../../shared/variables";
 
 .footer {
-    padding: 23px 130px;
+    display: flex;
+    justify-content: center;
+    padding: 23px 0;
     background-color: $gray-900;
     color: white;
 }

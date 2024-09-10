@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+  max-width: 1180px;
+  padding: 0 130px;
+}
+
+
+@media screen and (max-width: 1180px) {
+  .container {
+    padding: 0 65px;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .container {
+    padding: 0 30px;
+  }
+}

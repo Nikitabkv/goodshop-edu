@@ -1,7 +1,9 @@
 @import "../../../shared/variables";
 
 .header {
-    padding: 23px 130px;
+    display: flex;
+    justify-content: center;
+    padding: 23px 0;
     background-color: $violet;
     color: white;
 }
