@@ -20,8 +20,8 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
   const [countValue, setCountValue] = useState(count)
 
   return (
-    <div className={s.item}>
-      <div className={s.itemInfo}>
+    <div className={s.item + ' ' + (isDeleted ? s.removed : '')}>
+      <div className={s.itemInfo + ' ' + (isDeleted ? s.removed : '')}>
         <img src={img} alt="Essence Mascara Lash Princess" width={100} height={100} />
         <div className={s.itemPriceCol}>
           <Title tag={'h2'}>

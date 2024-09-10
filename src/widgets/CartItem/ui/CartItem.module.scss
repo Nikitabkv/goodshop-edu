@@ -14,6 +14,10 @@
 
   transition: 300ms;
 
+  &.removed {
+    border-color: $gray-100;
+  }
+
   &:hover {
     background-color: $gray-100;
   }
@@ -23,6 +27,10 @@
   display: flex;
   gap: 10px;
   flex-basis: 362px;
+
+  &.removed {
+    opacity: 0.6;
+  }
 }
 
 .itemPriceCol {
