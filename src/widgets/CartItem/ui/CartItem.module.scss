@@ -1,0 +1,79 @@
+@import "../../../shared/variables";
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  min-height: calc(124px - 24px);
+  padding: 12px;
+  border: 1px solid $gray-200;
+  border-radius: 4px;
+  color: $gray-900;
+
+  transition: 300ms;
+
+  &:hover {
+    background-color: $gray-100;
+  }
+}
+
+.itemInfo {
+  display: flex;
+  gap: 10px;
+  flex-basis: 362px;
+}
+
+.itemPriceCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+
+  h2 {
+    margin: 0;
+    line-height: 22px;
+    font-size: $medium;
+    font-weight: $semi-bold;
+  }
+
+  .price {
+    line-height: 26px;
+    font-size: $large;
+  }
+}
+
+.manageItem {
+  display: flex;
+  justify-content: flex-end;
+  gap: 48px;
+  flex-grow: 1;
+  padding-right: 12px;
+
+  .addRemoveButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-basis: 188px;
+    min-width: 170px;
+
+    .button {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+.deleteButton {
+  font-size: $small;
+  line-height: 20px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: $gray-500;
+}
+
+.restoreButton {
+  width: 50px;
+  height: 50px;
+}

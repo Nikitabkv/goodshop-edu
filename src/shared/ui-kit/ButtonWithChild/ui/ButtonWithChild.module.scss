@@ -1,0 +1,12 @@
+@import "../../../variables";
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 4px;
+  background-color: $orange;
+  color: white;
+}
