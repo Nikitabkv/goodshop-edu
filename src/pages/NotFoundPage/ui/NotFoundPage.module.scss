@@ -1,0 +1,19 @@
+@import '../../../shared/variables';
+
+.notFound {
+  display: flex;
+  place-items: center;
+  place-content: center;
+  font-weight: $bold;
+  font-size: $extra-2-large;
+  background-color: $violet;
+  height: 100vh;
+
+  color: white;
+}
+
+.wrapper {
+  border: 2px dashed white;
+  padding: 20px;
+  border-radius: 8px;
+}
