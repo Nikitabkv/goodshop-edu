@@ -2,6 +2,7 @@ import s from "./CartItem.module.scss"
 import img from "../../../shared/mockFiles/img.png"
 import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
 import {FC, useState} from "react";
+import {Link} from "react-router-dom";
 
 interface CartItemProps {
   item: {
@@ -23,7 +24,9 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
         <img src={img} alt="Essence Mascara Lash Princess" width={100} height={100} />
         <div className={s.itemPriceCol}>
           <h2>
-            {name}
+            <Link to={'/'}>
+              {name}
+            </Link>
           </h2>
           <span className={s.price}>
             ${price}
