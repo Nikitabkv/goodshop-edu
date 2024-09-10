@@ -1,6 +1,7 @@
 import s from './Cart.module.scss'
 import Container from "../../../shared/ui-kit/Container"
 import CartItem from "../../../widgets/CartItem"
+import {Title} from "../../../shared/ui-kit/Title/ui/Title.tsx"
 
 const cartItems = [
   {
@@ -37,7 +38,7 @@ export const Cart = () => {
   return (
     <div className={s.cart}>
       <Container>
-        <h1>My cart</h1>
+        <Title tag={'h2'}>My cart</Title>
         <div className={s.cartRow}>
           <div className={s.itemsWrapper}>
             {cartItems.map((item) => (
