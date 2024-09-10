@@ -11,6 +11,10 @@
   color: white;
   transition: 300ms;
 
+  &:disabled {
+    background-color: $orange-white;
+  }
+
   &:hover {
     background-color: $orange-dark;
   }
