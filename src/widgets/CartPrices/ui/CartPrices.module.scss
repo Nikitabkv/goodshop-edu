@@ -1,0 +1,40 @@
+@import "../../../shared/variables";
+
+@mixin flexPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemsCount {
+  @include flexPrice();
+  font-size: $large;
+  line-height: 30px;
+}
+
+.totalPrice {
+  @include flexPrice();
+  font-size: $large;
+  font-weight: $semi-bold;
+  line-height: 30px;
+}
+
+.hr {
+  height: 1px;
+  background-color: $gray-200;
+  width: 100%;
+  border: none;
+  margin-top: 9px;
+  margin-bottom: 0;
+}
+
+.totalPriceWithDiscount {
+  @include flexPrice();
+  font-size: $extra-large;
+  font-weight: $semi-bold;
+  line-height: 36px;
+}
+
+.info {
+  color: $gray-900;
+}

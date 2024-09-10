@@ -3,6 +3,7 @@ import img from "../../../shared/mockFiles/img.png"
 import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
 import {FC, useState} from "react";
 import {Link} from "react-router-dom";
+import {Title} from "../../../shared/ui-kit/Title/ui/Title.tsx";
 
 interface CartItemProps {
   item: {
@@ -23,11 +24,11 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
       <div className={s.itemInfo}>
         <img src={img} alt="Essence Mascara Lash Princess" width={100} height={100} />
         <div className={s.itemPriceCol}>
-          <h2>
+          <Title tag={'h2'}>
             <Link to={'/'}>
               {name}
             </Link>
-          </h2>
+          </Title>
           <span className={s.price}>
             ${price}
           </span>

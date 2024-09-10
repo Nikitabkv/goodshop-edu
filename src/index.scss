@@ -1,13 +1,22 @@
-#root {
+@import "./shared/variables";
+
+#root, button, input, textarea {
   font-family: Jost, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -18,7 +27,7 @@ body {
 
 a {
   text-decoration: none;
-  color: black;
+  color: $gray-900;
 }
 
 @font-face {
