@@ -1,0 +1,31 @@
+@import "src/shared/variables";
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 520px;
+  flex-basis: 520px;
+  flex-grow: 1;
+}
+
+.galleryImg {
+  max-height: 520px;
+  border-radius: 4px;
+  border: 1px solid $gray-200;
+}
+
+.slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+.sliderImage {
+  border: 1px solid $gray-200;
+  border-radius: 4px;
+
+  &.active {
+    border: 1px solid $violet;
+  }
+}
