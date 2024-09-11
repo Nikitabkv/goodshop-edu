@@ -25,7 +25,7 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
         <img src={img} alt="Essence Mascara Lash Princess" width={100} height={100} />
         <div className={s.itemPriceCol}>
           <Title tag={'h2'}>
-            <Link to={'/'}>
+            <Link to={`/product/${item.id}`}>
               {name}
             </Link>
           </Title>

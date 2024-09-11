@@ -10,6 +10,7 @@ import Cart from "./pages/Cart"
 import NotFoundPage from "./pages/NotFoundPage"
 import Header from "./widgets/Header"
 import Footer from "./widgets/Footer"
+import Product from "./pages/Product"
 
 const router = createBrowserRouter([
   {
@@ -21,8 +22,12 @@ const router = createBrowserRouter([
     element: <><Header /><Cart /><Footer/></>,
   },
   {
+    path: "product/:id",
+    element: <><Header /><Product /><Footer/></>,
+  },
+  {
     path: "*",
-    element: <NotFoundPage />,
+    element: <><Header /><NotFoundPage /><Footer/></>,
   }
 ]);
 
