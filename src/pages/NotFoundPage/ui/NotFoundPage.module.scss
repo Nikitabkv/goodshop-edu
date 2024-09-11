@@ -2,12 +2,12 @@
 
 .notFound {
   display: flex;
+  flex-grow: 1;
   place-items: center;
   place-content: center;
   font-weight: $bold;
   font-size: $extra-2-large;
   background-color: $violet;
-  height: 100vh;
 
   color: white;
 }
