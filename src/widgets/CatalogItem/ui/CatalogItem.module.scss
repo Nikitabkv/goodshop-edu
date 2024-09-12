@@ -1,0 +1,59 @@
+@import "src/shared/variables";
+
+.catalogItem {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $gray-200;
+  border-radius: 6px;
+  gap: 10px;
+  max-width: 370px;
+  flex-grow: 1;
+}
+
+.manageItems {
+  display: flex;
+  gap: 10px;
+  padding: 0 10px 10px 10px;
+  color: $gray-900;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 50px;
+  flex-grow: 1;
+  gap: 6px;
+  max-width: 290px;
+  overflow: hidden;
+}
+
+.name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-wrap: nowrap;
+  font-weight: $semi-bold;
+  font-size: $medium;
+  line-height: 20px;
+  flex-shrink: 1;
+}
+
+.price {
+  font-size: $large;
+  line-height: 24px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.button {
+  height: 100%;
+  padding: 16px;
+}
+
+.itemsCount {
+  font-size: $small;
+}
