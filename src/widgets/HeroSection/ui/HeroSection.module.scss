@@ -1,0 +1,48 @@
+@import "src/shared/variables";
+
+.hero {
+  position: relative;
+  max-height: 500px;
+  background-color: $violet;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 30px;
+  padding: 115px 0;
+  z-index: 1;
+}
+
+.heroBigText {
+  font-size: $extra-3-large;
+  line-height: 50px;
+  margin: 0;
+}
+
+.heroSmallText {
+  font-weight: $semi-bold;
+  font-size: $large;
+  line-height: 24px;
+  margin: 0;
+}
+
+.hero:after {
+  content: "Goods4you";
+  position: absolute;
+  font-size: 200px;
+  font-weight: $bold;
+  text-align: center;
+  color: #FFFFFF1F;
+  line-height: 300px;
+  bottom: 78px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.heroButton {
+  width: fit-content;
+  padding: 20px 50px;
+  line-height: 22px;
+}
