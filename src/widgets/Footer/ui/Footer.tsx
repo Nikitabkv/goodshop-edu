@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 import {Container} from "../../../shared/ui-kit/Container/ui/Container.tsx";
 
 export const Footer = () => (
-  <header className={s.footer}>
+  <footer className={s.footer}>
     <Container>
       <div className={s.container}>
         <span className={s.logo}>
@@ -16,5 +16,5 @@ export const Footer = () => (
         </nav>
       </div>
     </Container>
-  </header>
+  </footer>
 )
