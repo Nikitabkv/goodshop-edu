@@ -52,3 +52,17 @@
     right: -3px;
     bottom: -6px;
 }
+
+@media screen and (max-width: 620px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 520px) {
+}
