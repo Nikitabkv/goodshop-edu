@@ -31,3 +31,13 @@
   flex-grow: 1;
   color: $gray-500;
 }
+
+
+@media screen and (max-width: 1040px) {
+  .cartRow {
+    flex-direction: column;
+  }
+  .itemsWrapper {
+    padding: 10px;
+  }
+}
