@@ -7,9 +7,9 @@ import CatalogItem from "../../CatalogItem"
 
 export const CatalogSection = () => {
   return (
-    <Container className={s.catalog}>
+    <Container wrapperClassName={s.catalog}>
       <div className={s.col}>
-        <Title tag={'h1'}>
+        <Title tag={'h2'}>
           Catalog
         </Title>
         <input className={s.searchByTitle} type={'text'} placeholder={'Search by title'}/>

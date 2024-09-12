@@ -3,12 +3,13 @@ import s from "./Container.module.scss"
 
 interface ContainerProps {
   children: ReactNode
-  className?: string
+  wrapperClassName?: string
+  containerClassName?: string
 }
 
-export const Container:FC<ContainerProps> = ({ children, className}) => (
-  <div className={s.wrapper  + (className ? ' ' + className : '')}>
-    <div className={s.container}>
+export const Container:FC<ContainerProps> = ({ children, wrapperClassName, containerClassName}) => (
+  <div className={s.wrapper + (wrapperClassName ? ' ' + wrapperClassName : '')}>
+    <div className={s.container + (containerClassName ? ' ' + containerClassName : '')}>
       {children}
     </div>
   </div>

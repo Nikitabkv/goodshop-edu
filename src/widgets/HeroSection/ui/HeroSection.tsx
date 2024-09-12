@@ -4,7 +4,7 @@ import Container from "../../../shared/ui-kit/Container"
 
 export const HeroSection = () => {
   return (
-    <Container className={s.hero}>
+    <Container wrapperClassName={s.hero}>
       <div className={s.heroContent}>
         <p className={s.heroBigText}>Any products from famous brands<br/>with worldwide delivery</p>
         <p className={s.heroSmallText}>We sell smartphones, laptops, clothes, shoes<br/>and many other products at low prices</p>
