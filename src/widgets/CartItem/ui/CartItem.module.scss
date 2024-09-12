@@ -138,7 +138,14 @@
     flex-direction: column;
   }
   .itemInfo {
+    justify-content: flex-start;
+    width: 100%;
     flex-basis: 0;
+  }
+  .manageItem {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
   }
   .deleteButton {
     height: 40px;

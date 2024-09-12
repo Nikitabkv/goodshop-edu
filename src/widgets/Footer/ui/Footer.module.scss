@@ -36,3 +36,12 @@
     color: white;
     text-decoration: none;
 }
+
+@media screen and (max-width: 420px) {
+    .container {
+        padding: 0;
+        flex-direction: column-reverse;
+        gap: 20px;
+        align-items: center;
+    }
+}
