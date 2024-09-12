@@ -35,7 +35,7 @@ export const ProductInfo:FC<ProductInfoProps> = ({item}) => {
   return (
     <div className={s.itemInfo}>
       <div>
-        <Title tag={'h2'} fontWeight={600}>{name}</Title>
+        <Title tag={'h2'} fontWeight={600} className={s.title}>{name}</Title>
         <div className={s.ratingTypes}>
         <span className={s.stars}>
           {Array.from({length: 5}).map((_, index) => (

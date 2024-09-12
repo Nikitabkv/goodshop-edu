@@ -57,10 +57,10 @@
 
 .cartGroup {
   display: flex;
+  justify-content: space-between;
   background-color: $gray-100;
   border-radius: 6px;
   padding: 12px;
-  gap: 89px;
 }
 
 .priceWrapper {
@@ -114,6 +114,63 @@
 
 .addToCartButton {
   width: 100%;
+  text-wrap: nowrap;
   max-width: 176px;
   font-size: $medium;
+}
+
+@media screen and (max-width: 1380px) {
+  .itemInfo {
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .priceWrapper {
+    gap: 8px;
+  }
+  .title {
+    font-size: $extra-large;
+  }
+}
+
+@media screen and (max-width: 740px) {
+}
+
+
+@media screen and (max-width: 520px) {
+  .priceWrapper {
+    width: 100%;
+    padding: 0;
+    justify-content: space-between;
+  }
+  .cartGroup {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .addToCartButton {
+    padding: 16px;
+    max-width: 100%;
+  }
+
+  .price {
+    span {
+      &:first-child {
+        font-weight: $semi-bold;
+        font-size: $extra-large;
+        line-height: 28px;
+      }
+      &:last-child {
+        font-weight: 500;
+        font-size: $small;
+        line-height: 18px;
+        text-decoration: line-through;
+        color: $gray-600;
+      }
+    }
+  }
+  .ratingTypes {
+    flex-direction: column;
+  }
 }
