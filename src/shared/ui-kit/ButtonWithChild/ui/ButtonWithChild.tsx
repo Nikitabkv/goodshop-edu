@@ -1,10 +1,10 @@
 import s from './ButtonWithChild.module.scss'
-import {FC, ReactNode} from "react"
+import {FC, MouseEvent, ReactNode} from "react"
 
 interface ButtonWithChildProps {
   children: ReactNode
   className?: string
-  clickHandler?: () => void
+  clickHandler: (e: MouseEvent<HTMLButtonElement>) => void
   disabled?: boolean
 }
 
