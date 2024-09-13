@@ -7,12 +7,12 @@ export const NotFoundPage = () => {
       <Helmet>
         <title>404 | Goods4you</title>
       </Helmet>
-      <div className={s.notFound}>
+      <main className={s.notFound}>
         <div className={s.wrapper}>
           <h1>404</h1>
           Извините, такой страницы не существует :c
         </div>
-      </div>
+      </main>
     </>
   )
 }

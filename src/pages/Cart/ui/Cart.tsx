@@ -42,7 +42,7 @@ export const Cart = () => {
       <Helmet>
         <title>My cart | Goods4you</title>
       </Helmet>
-      <div className={s.cart}>
+      <main className={s.cart}>
         <Container>
           <Title tag={'h2'}>My cart</Title>
           <div className={s.cartRow}>
@@ -56,7 +56,7 @@ export const Cart = () => {
             </div>
           </div>
         </Container>
-      </div>
+      </main>
     </>
   )
 }

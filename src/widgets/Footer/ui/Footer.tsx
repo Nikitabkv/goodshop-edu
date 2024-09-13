@@ -6,9 +6,11 @@ export const Footer = () => (
   <footer className={s.footer}>
     <Container>
       <div className={s.container}>
-        <span className={s.logo}>
-          Goods4you
-        </span>
+        <Link to={'/'}>
+          <span className={s.logo}>
+            Goods4you
+          </span>
+        </Link>
 
         <nav className={s.nav}>
           <Link className={s.navLink} to={"/#catalog"}>Catalog</Link>

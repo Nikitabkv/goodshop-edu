@@ -30,14 +30,14 @@ export const Product = () => {
       <Helmet>
         <title>{item.name} | Goods4you</title>
       </Helmet>
-      <div className={s.product}>
+      <main className={s.product}>
         <Container>
           <div className={s.productRow}>
             <ProductGallery imgs={item.itemImgs} name={item.name} />
             <ProductInfo item={item} />
           </div>
         </Container>
-      </div>
+      </main>
     </>
   )
 }

@@ -21,11 +21,11 @@ export const MainPage = () => {
       <Helmet>
         <title>Catalog | Goods4you</title>
       </Helmet>
-      <div className={s.mainPage}>
+      <main className={s.mainPage}>
         <HeroSection/>
         <CatalogSection/>
         <QuestionsSection/>
-      </div>
+      </main>
     </>
   )
 }
