@@ -57,7 +57,7 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
           </>
         ) : (
           <div className={s.restoreButtonWrapper}>
-            <ButtonWithChild className={s.restoreButton}>
+            <ButtonWithChild className={s.restoreButton} clickHandler={() => console.log('Добавить в корзину')}>
               <CartIcon />
             </ButtonWithChild>
           </div>
