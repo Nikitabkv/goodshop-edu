@@ -23,6 +23,8 @@
 
 .crossIconWrapper {
   transition: 500ms ease;
+  height: 26px;
+  width: 25px;
 
   &.open {
     transform: rotate(-45deg);
@@ -30,8 +32,8 @@
 }
 
 .question {
-  font-size: $extra-2-large;
-  line-height: 30px;
+  font-size: $extra-large;
+  line-height: 40px;
 }
 
 .answerLine {
