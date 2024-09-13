@@ -11,10 +11,12 @@
   width: 100%;
   max-width: 370px;
 
+  &:after {
+    transition: 500ms;
+    content: "";
+  }
 
   &:hover {
-    img {
-    }
     &:after {
       content: "Show Deatils";
       position: absolute;
