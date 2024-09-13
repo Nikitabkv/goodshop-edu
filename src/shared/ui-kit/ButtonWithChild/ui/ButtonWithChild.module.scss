@@ -11,8 +11,10 @@
   color: white;
   transition: 300ms;
   font-size: $medium;
+  cursor: pointer;
 
   &:disabled {
+    cursor: not-allowed;
     background-color: $orange-white;
   }
 
