@@ -16,12 +16,14 @@
 }
 
 .heroBigText {
+  max-width: 550px;
   font-size: $extra-3-large;
   line-height: 50px;
   margin: 0;
 }
 
 .heroSmallText {
+  max-width: 480px;
   font-weight: $semi-bold;
   font-size: $large;
   line-height: 24px;
@@ -46,3 +48,55 @@
   padding: 20px 50px;
   line-height: 22px;
 }
+
+@media screen and (max-width: 1180px) {
+  .heroContent {
+    padding: 80px 0;
+  }
+  .hero:after {
+    font-size: 150px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .heroContent {
+    padding: 60px 0;
+  }
+  .hero:after {
+    font-size: 120px;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .heroContent {
+    padding: 40px 0;
+  }
+  .heroBigText {
+    font-size: $extra-2-large;
+    line-height: 36px;
+  }
+  .hero:after {
+    font-size: 80px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .heroContent {
+    align-items: center;
+    padding: 20px 0;
+  }
+  .heroBigText {
+    text-align: center;
+  }
+  .heroSmallText {
+    text-align: center;
+    font-size: $medium;
+    line-height: 20px;
+  }
+  .hero:after {
+    bottom: 42px;
+    font-size: 56px;
+  }
+}
+
+

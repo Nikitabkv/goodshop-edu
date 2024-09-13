@@ -7,10 +7,16 @@
 }
 
 .containerClassName {
-  padding: 0 280px;
+
+  .title {
+    color: white;
+    margin-bottom: 20px;
+  }
 }
 
-.title {
-  color: white;
-  margin-bottom: 20px;
+
+@media screen and (min-width: 1320px) {
+  .containerClassName {
+    padding: 0 280px;
+  }
 }

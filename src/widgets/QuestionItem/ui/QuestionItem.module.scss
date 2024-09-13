@@ -17,6 +17,7 @@
 
 .questionLine {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -45,5 +46,18 @@
   &.open {
     padding-top: 20px;
     max-height: 100px;
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .question {
+    font-size: $extra-large;
+    line-height: 25px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .question {
+    font-size: $large;
   }
 }
