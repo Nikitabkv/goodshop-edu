@@ -14,8 +14,8 @@ export const Header = () => (
         </Link>
 
         <nav className={s.nav}>
-          <Link className={s.navLink} to={"/catalog"}>Catalog</Link>
-          <Link className={s.navLink} to={"/faq"}>FAQ</Link>
+          <Link className={s.navLink} to={"/#catalog"}>Catalog</Link>
+          <Link className={s.navLink} to={"/#faq"}>FAQ</Link>
           <Link className={s.navLink} to={"/cart"}>
             Cart
             <CartIcon />

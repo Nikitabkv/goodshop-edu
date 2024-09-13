@@ -82,8 +82,8 @@ const mockCatalogItems = [
 export const CatalogSection = () => {
 
   return (
-    <Container wrapperClassName={s.catalog}>
-      <div className={s.col}>
+    <Container Tag={'section'} wrapperClassName={s.catalog}>
+      <div id={'catalog'} className={s.col}>
         <Title tag={'h2'}>
           Catalog
         </Title>

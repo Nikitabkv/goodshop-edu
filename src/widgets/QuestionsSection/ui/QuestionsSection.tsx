@@ -5,7 +5,8 @@ import QuestionItem from "../../QuestionItem"
 
 export const QuestionsSection = () => {
   return (
-    <Container wrapperClassName={s.wrapperClassName} containerClassName={s.containerClassName}>
+    <Container Tag={'section'} wrapperClassName={s.wrapperClassName} containerClassName={s.containerClassName}>
+      <span id={'faq'}/>
       <Title tag={'h2'} className={s.title}>
         FAQ
       </Title>
