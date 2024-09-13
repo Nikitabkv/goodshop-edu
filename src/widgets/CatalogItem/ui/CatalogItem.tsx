@@ -1,12 +1,12 @@
 import s from "./CatalogItem.module.scss"
-import img from "../../../shared/mockFiles/img.png"
+import catalogImg from "../../../shared/mockFiles/catalogImg.png"
 import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
 import {CartIcon, MinusIcon, PlusIcon} from "../../../shared/icons";
 
 export const CatalogItem = () => {
   return (
     <div className={s.catalogItem}>
-      <img src={img} alt={'Essence Mascara Lash Princess'}/>
+      <img src={catalogImg} alt={'Essence Mascara Lash Princess'}/>
       <div className={s.manageItems}>
         <div className={s.info}>
           <span className={s.name}>Essence Mascara Lash Princess</span>
@@ -15,7 +15,7 @@ export const CatalogItem = () => {
         <div className={s.buttons}>
           {Math.random() > 0.5 ? (
             <ButtonWithChild className={s.button}>
-              <CartIcon />
+              <CartIcon width={18} height={18}/>
             </ButtonWithChild>
           ) : (
             <>
