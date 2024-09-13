@@ -1,12 +1,18 @@
 import s from './NotFoundPage.module.scss'
+import {Helmet} from "react-helmet";
 
 export const NotFoundPage = () => {
   return (
-    <div className={s.notFound}>
-      <div className={s.wrapper}>
-        <h1>404</h1>
-        Извините, такой страницы не существует :c
+    <>
+      <Helmet>
+        <title>404 | Goods4you</title>
+      </Helmet>
+      <div className={s.notFound}>
+        <div className={s.wrapper}>
+          <h1>404</h1>
+          Извините, такой страницы не существует :c
+        </div>
       </div>
-    </div>
+    </>
   )
 }

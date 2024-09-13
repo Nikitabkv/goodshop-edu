@@ -3,6 +3,7 @@ import Container from "../../../shared/ui-kit/Container"
 import bigImg from "../../../shared/mockFiles/bigImg.png"
 import ProductGallery from "../../../widgets/ProductGallery"
 import ProductInfo from "../../../widgets/ProductInfo"
+import {Helmet} from "react-helmet";
 
 
 const item = {
@@ -25,13 +26,18 @@ const item = {
 export const Product = () => {
 
   return (
-    <div className={s.product}>
-      <Container>
-        <div className={s.productRow}>
-          <ProductGallery imgs={item.itemImgs} name={item.name} />
-          <ProductInfo item={item} />
-        </div>
-      </Container>
-    </div>
+    <>
+      <Helmet>
+        <title>{item.name} | Goods4you</title>
+      </Helmet>
+      <div className={s.product}>
+        <Container>
+          <div className={s.productRow}>
+            <ProductGallery imgs={item.itemImgs} name={item.name} />
+            <ProductInfo item={item} />
+          </div>
+        </Container>
+      </div>
+    </>
   )
 }
