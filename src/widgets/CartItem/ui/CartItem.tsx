@@ -53,7 +53,7 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
             <button className={s.deleteButton}>Delete</button>
           </>
         ) : (
-          <div>
+          <div className={s.restoreButtonWrapper}>
             <ButtonWithChild className={s.restoreButton}>
               <CartIcon />
             </ButtonWithChild>
