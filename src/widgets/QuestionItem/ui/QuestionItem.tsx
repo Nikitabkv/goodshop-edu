@@ -24,5 +24,3 @@ export const QuestionItem:FC<QuestionProps> = ({question, answer}) => {
     </div>
   )
 }
-
-//className={s.crossIcon + (isOpen ? ' ' + s.open : '')}
