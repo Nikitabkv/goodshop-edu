@@ -2,7 +2,7 @@ import s from "./CatalogSection.module.scss"
 import Container from "../../../shared/ui-kit/Container"
 import Title from "../../../shared/ui-kit/Title"
 import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
-import CatalogItem from "../../CatalogItem"
+import CatalogItem from "../../../features/CatalogItem"
 
 const mockCatalogItems = [
   {

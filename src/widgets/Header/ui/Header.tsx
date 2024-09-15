@@ -2,7 +2,7 @@ import s from './Header.module.scss'
 import {Link} from "react-router-dom"
 import Container from "../../../shared/ui-kit/Container"
 import {CartIcon} from "../../../shared/icons"
-import NavLink from "../../NavLink"
+import NavLink from "../../../features/NavLink"
 
 export const Header = () => (
   <header className={s.header}>

@@ -1,9 +1,9 @@
 import s from './Cart.module.scss'
 import {Helmet} from "react-helmet"
 import Container from "../../../shared/ui-kit/Container"
-import CartItem from "../../../widgets/CartItem"
+import CartItem from "../../../features/CartItem"
 import Title from "../../../shared/ui-kit/Title"
-import CartPrices from "../../../widgets/CartPrices"
+import CartPrices from "../../../features/CartPrices"
 
 const cartItems = [
   {

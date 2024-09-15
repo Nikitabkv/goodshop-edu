@@ -1,8 +1,8 @@
 import s from './Product.module.scss'
 import Container from "../../../shared/ui-kit/Container"
 import bigImg from "../../../shared/mockFiles/bigImg.png"
-import ProductGallery from "../../../widgets/ProductGallery"
-import ProductInfo from "../../../widgets/ProductInfo"
+import ProductGallery from "../../../features/ProductGallery"
+import ProductInfo from "../../../features/ProductInfo"
 import {Helmet} from "react-helmet"
 
 const item = {

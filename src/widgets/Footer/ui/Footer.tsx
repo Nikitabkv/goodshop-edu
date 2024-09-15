@@ -1,7 +1,7 @@
 import s from './Footer.module.scss'
 import {Link} from "react-router-dom"
 import {Container} from "../../../shared/ui-kit/Container/ui/Container.tsx"
-import NavLink from "../../NavLink"
+import NavLink from "../../../features/NavLink"
 
 export const Footer = () => (
   <footer className={s.footer}>

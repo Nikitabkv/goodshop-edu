@@ -1,7 +1,7 @@
 import s from './QuestionsSection.module.scss'
 import Container from "../../../shared/ui-kit/Container"
 import Title from "../../../shared/ui-kit/Title"
-import QuestionItem from "../../QuestionItem"
+import QuestionItem from "../../../features/QuestionItem"
 
 export const QuestionsSection = () => {
   return (
