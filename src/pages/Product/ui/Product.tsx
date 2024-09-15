@@ -29,11 +29,12 @@ export const Product = () => {
     <>
       <Helmet>
         <title>{item.name} | Goods4you</title>
+        <meta name='description' content='Any products from famous brands with worldwide delivery'/>
       </Helmet>
       <main className={s.product}>
         <Container>
           <div className={s.productRow}>
-            <ProductGallery imgs={item.itemImgs} name={item.name} />
+          <ProductGallery imgs={item.itemImgs} name={item.name} />
             <ProductInfo item={item} />
           </div>
         </Container>

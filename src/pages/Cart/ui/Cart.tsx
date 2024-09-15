@@ -41,6 +41,7 @@ export const Cart = () => {
     <>
       <Helmet>
         <title>My cart | Goods4you</title>
+        <meta name='description' content='Any products from famous brands with worldwide delivery'/>
       </Helmet>
       <main className={s.cart}>
         <Container containerClassName={s.cartContainer}>

@@ -14,7 +14,16 @@
 }
 
 .wrapper {
+  text-align: center;
   border: 2px dashed white;
   padding: 20px;
   border-radius: 8px;
+}
+
+.link {
+  margin-top: 40px;
+  a {
+    color: $orange-white;
+    cursor: pointer;
+  }
 }
