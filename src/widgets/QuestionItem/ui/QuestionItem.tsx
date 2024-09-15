@@ -15,7 +15,7 @@ export const QuestionItem:FC<QuestionProps> = ({question, answer, isOpen = false
     <div className={s.wrapper + (questionIsOpen ? ' ' + s.open : '')}>
       <div
         tabIndex={0}
-        aria-label={'open/close question'}
+        aria-label={`Question: ${question}`}
         className={s.questionLine}
         onClick={() => setQuestionIsOpen(!questionIsOpen)}
       >

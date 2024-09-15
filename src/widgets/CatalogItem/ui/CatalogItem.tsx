@@ -50,7 +50,13 @@ export const CatalogItem:FC<CatalogItemProps> = ({item}) => {
                 >
                   <MinusIcon aria-hidden="true" />
                 </ButtonWithChild>
-                <span className={s.itemsCount}>{countValue} item{countValue > 1 ? 's' : ''}</span>
+                <span
+                  aria-label={`${countValue} item${countValue > 1 ? 's' : ''}`}
+                  tabIndex={0}
+                  className={s.itemsCount}
+                >
+                  {countValue} item{countValue > 1 ? 's' : ''}
+                </span>
                 <ButtonWithChild
                   ariaLabel={'Increase the number of items'}
                   className={s.button}
