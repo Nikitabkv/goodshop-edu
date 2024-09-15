@@ -29,15 +29,6 @@
     line-height: 20px;
 }
 
-.navLink {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: white;
-    text-decoration: none;
-}
-
 @media screen and (max-width: 420px) {
     .container {
         padding: 0;

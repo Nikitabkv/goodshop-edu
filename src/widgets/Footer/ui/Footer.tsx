@@ -1,6 +1,7 @@
 import s from './Footer.module.scss'
 import {Link} from "react-router-dom"
-import {Container} from "../../../shared/ui-kit/Container/ui/Container.tsx";
+import {Container} from "../../../shared/ui-kit/Container/ui/Container.tsx"
+import NavLink from "../../NavLink"
 
 export const Footer = () => (
   <footer className={s.footer}>
@@ -13,8 +14,8 @@ export const Footer = () => (
         </Link>
 
         <nav className={s.nav}>
-          <Link className={s.navLink} to={"/#catalog"}>Catalog</Link>
-          <Link className={s.navLink} to={"/#faq"}>FAQ</Link>
+          <NavLink to={"/#catalog"} >Catalog</NavLink>
+          <NavLink to={"/#faq"}>FAQ</NavLink>
         </nav>
       </div>
     </Container>

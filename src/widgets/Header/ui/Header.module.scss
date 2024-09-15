@@ -29,16 +29,6 @@
     line-height: 20px;
 }
 
-.navLink {
-    position: relative;
-    display: flex;
-    font-weight: $semi-bold;
-    align-items: center;
-    gap: 6px;
-    color: white;
-    text-decoration: none;
-}
-
 .counter {
     position: absolute;
     text-align: center;
@@ -64,5 +54,5 @@
     }
 }
 
-@media screen and (max-width: 520px) {
-}
+//@media screen and (max-width: 520px) {
+//}

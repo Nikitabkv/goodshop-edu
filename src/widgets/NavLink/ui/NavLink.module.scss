@@ -1,0 +1,20 @@
+@import "src/shared/variables";
+
+.navLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: $small;
+  line-height: 20px;
+  gap: 6px;
+  color: white;
+  text-decoration: none;
+
+  &.disabled {
+    pointer-events: none;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
