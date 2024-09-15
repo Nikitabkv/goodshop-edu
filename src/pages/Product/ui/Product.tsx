@@ -3,8 +3,7 @@ import Container from "../../../shared/ui-kit/Container"
 import bigImg from "../../../shared/mockFiles/bigImg.png"
 import ProductGallery from "../../../widgets/ProductGallery"
 import ProductInfo from "../../../widgets/ProductInfo"
-import {Helmet} from "react-helmet";
-
+import {Helmet} from "react-helmet"
 
 const item = {
   id: 1,

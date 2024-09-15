@@ -25,7 +25,7 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
       <div className={s.itemInfo + ' ' + (isDeleted ? s.removed : '')}>
         <img src={img} alt="Essence Mascara Lash Princess" width={100} height={100} />
         <div className={s.itemPriceCol}>
-          <Title tag={'h2'}>
+          <Title tag={'h3'} tabIndex={-1}>
             <Link to={`/product/${item.id}`}>
               {name}
             </Link>
@@ -40,24 +40,32 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
         {!isDeleted ? (
           <>
             <div className={s.addRemoveButtons}>
-              <ButtonWithChild className={s.button}
-                               disabled={countValue <= 0}
-                               clickHandler={() => setCountValue(countValue - 1)}>
-                <MinusIcon />
+              <ButtonWithChild
+                ariaLabel={'Reduce the number of items'}
+                className={s.button}
+                disabled={countValue <= 0}
+                clickHandler={() => setCountValue(countValue - 1)}>
+                <MinusIcon aria-hidden="true" />
               </ButtonWithChild>
-              <span>
-              {countValue} {countValue > 1 ? 'items' : 'item'}
+              <span tabIndex={0} aria-label={`${countValue} ${countValue > 1 ? 'items' : 'item'}`}>
+                {countValue} {countValue > 1 ? 'items' : 'item'}
               </span>
-              <ButtonWithChild className={s.button} clickHandler={() => setCountValue(countValue + 1)}>
-                <PlusIcon />
+              <ButtonWithChild
+                ariaLabel={'Increase the number of items'}
+                className={s.button}
+                clickHandler={() => setCountValue(countValue + 1)}>
+                <PlusIcon aria-hidden="true" />
               </ButtonWithChild>
             </div>
             <button className={s.deleteButton}>Delete</button>
           </>
         ) : (
           <div className={s.restoreButtonWrapper}>
-            <ButtonWithChild className={s.restoreButton} clickHandler={() => console.log('Добавить в корзину')}>
-              <CartIcon />
+            <ButtonWithChild
+              className={s.restoreButton}
+              clickHandler={() => console.log('Добавить в корзину')}
+              ariaLabel={'Return item to cart'}>
+              <CartIcon aria-hidden="true" />
             </ButtonWithChild>
           </div>
         )}

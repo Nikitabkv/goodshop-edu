@@ -13,8 +13,8 @@ export const HeroSection = () => {
   return (
     <Container Tag={'section'} wrapperClassName={s.hero}>
       <div className={s.heroContent}>
-        <p className={s.heroBigText}>Any products from famous brands with worldwide delivery</p>
-        <p className={s.heroSmallText}>We sell smartphones, laptops, clothes, shoes and many other products at low prices</p>
+        <p tabIndex={0} className={s.heroBigText}>Any products from famous brands with worldwide delivery</p>
+        <p tabIndex={0} className={s.heroSmallText}>We sell smartphones, laptops, clothes, shoes and many other products at low prices</p>
         <ButtonWithChild className={s.heroButton} clickHandler={toShoppingHandler}>
           Go to shopping
         </ButtonWithChild>

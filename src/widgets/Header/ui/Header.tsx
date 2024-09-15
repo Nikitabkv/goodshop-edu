@@ -19,7 +19,7 @@ export const Header = () => (
           <NavLink to={"/#faq"}>FAQ</NavLink>
           <NavLink to={"/cart"}>
             Cart
-            <CartIcon />
+            <CartIcon aria-hidden="true" />
             <span className={s.counter}>99+</span>
           </NavLink>
           <NavLink to={"#"}>Johnson Smith</NavLink>

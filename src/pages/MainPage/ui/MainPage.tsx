@@ -3,11 +3,11 @@ import {Helmet} from "react-helmet"
 import HeroSection from "../../../widgets/HeroSection"
 import CatalogSection from "../../../widgets/CatalogSection"
 import QuestionsSection from "../../../widgets/QuestionsSection"
-import {useLocation} from "react-router-dom";
-import {useEffect} from "react";
+import {useLocation} from "react-router-dom"
+import {useEffect} from "react"
 
 export const MainPage = () => {
-  //TODO: Поискать варианты без ререндеров
+  //TODO: Глянуть как можно сделать правильнее
   const {hash, key} = useLocation()
   useEffect(()=>{
     if(hash){

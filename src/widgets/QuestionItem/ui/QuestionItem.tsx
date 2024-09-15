@@ -13,15 +13,20 @@ export const QuestionItem:FC<QuestionProps> = ({question, answer, isOpen = false
 
   return (
     <div className={s.wrapper + (questionIsOpen ? ' ' + s.open : '')}>
-      <div className={s.questionLine} onClick={() => setQuestionIsOpen(!questionIsOpen)}>
+      <div
+        tabIndex={0}
+        aria-label={'open/close question'}
+        className={s.questionLine}
+        onClick={() => setQuestionIsOpen(!questionIsOpen)}
+      >
         <span className={s.question}>{question}</span>
         <span className={s.crossIconWrapper + (questionIsOpen ? ' ' + s.open : '')}>
-          <CrossIcon />
+          <CrossIcon aria-hidden="true" />
         </span>
       </div>
-      <div className={s.answerLine + (questionIsOpen ? ' ' + s.open : '')}>
+      <p tabIndex={0} className={s.answerLine + (questionIsOpen ? ' ' + s.open : '')}>
         {answer}
-      </div>
+      </p>
     </div>
   )
 }

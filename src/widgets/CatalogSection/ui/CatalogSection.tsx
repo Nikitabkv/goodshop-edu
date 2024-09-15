@@ -91,7 +91,7 @@ export const CatalogSection = () => {
         <div className={s.catalogItems}>
           {mockCatalogItems.map(item => <CatalogItem key={item.id} item={item} />)}
         </div>
-        <ButtonWithChild className={s.showMore} clickHandler={() => console.log('click')}>
+        <ButtonWithChild ariaLabel={'show more'} className={s.showMore} clickHandler={() => console.log('click')}>
           Show more
         </ButtonWithChild>
       </div>
