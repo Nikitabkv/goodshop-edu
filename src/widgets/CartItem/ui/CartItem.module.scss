@@ -16,6 +16,16 @@
 
   &.removed {
     border-color: $gray-100;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    .itemPriceCol {
+      h2 {
+        text-decoration: none;
+      }
+    }
   }
 
   &:hover {

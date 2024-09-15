@@ -41,8 +41,7 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
           <>
             <div className={s.addRemoveButtons}>
               <ButtonWithChild className={s.button}
-                               // сделал как по макету, если раскоментировать кнопка будет дисейблится
-                               // disabled={countValue <= 1}
+                               disabled={countValue <= 0}
                                clickHandler={() => setCountValue(countValue - 1)}>
                 <MinusIcon />
               </ButtonWithChild>
