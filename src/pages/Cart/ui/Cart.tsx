@@ -43,7 +43,7 @@ export const Cart = () => {
         <title>My cart | Goods4you</title>
       </Helmet>
       <main className={s.cart}>
-        <Container>
+        <Container containerClassName={s.cartContainer}>
           <Title tag={'h2'}>My cart</Title>
           <div className={s.cartRow}>
             <div className={s.itemsWrapper}>
