@@ -29,7 +29,7 @@ export const CatalogItem:FC<CatalogItemProps> = ({item}) => {
         <img src={catalogImg} alt={'Essence Mascara Lash Princess'}/>
         <div className={s.manageItems}>
           <div className={s.info}>
-            <span className={s.name}>{name}</span>
+            <span title={name} className={s.name}>{name}</span>
             <span className={s.price}>${price}</span>
           </div>
           <div className={s.buttons}>
