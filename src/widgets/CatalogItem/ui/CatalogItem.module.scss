@@ -18,7 +18,7 @@
 
   &:hover {
     &:after {
-      content: "Show Deatils";
+      content: "Show details";
       position: absolute;
       display: flex;
       align-items: center;
@@ -43,9 +43,10 @@
 
 .manageItems {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   padding: 10px;
   color: $gray-900;
+  border-radius: 0 0 6px 6px;
 }
 
 .info {
@@ -86,6 +87,9 @@
 }
 
 .itemsCount {
+  min-width: 48px;
+  width: auto;
+  text-align: center;
   font-size: $small;
 }
 

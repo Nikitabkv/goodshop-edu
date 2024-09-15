@@ -34,21 +34,24 @@ export const CatalogItem:FC<CatalogItemProps> = ({item}) => {
           </div>
           <div className={s.buttons}>
             {countValue === 0 ? (
-              <ButtonWithChild className={s.button}
-                               clickHandler={(e: MouseEvent<HTMLButtonElement>) => clickHandler(e, () => setCountValue(1))}
+              <ButtonWithChild
+                className={s.button}
+                clickHandler={(e: MouseEvent<HTMLButtonElement>) => clickHandler(e, () => setCountValue(1))}
               >
                 <CartIcon width={18} height={18}/>
               </ButtonWithChild>
             ) : (
               <>
-                <ButtonWithChild className={s.button}
-                                 clickHandler={(e: MouseEvent<HTMLButtonElement>) => clickHandler(e, () => setCountValue(countValue - 1))}
+                <ButtonWithChild
+                  className={s.button}
+                  clickHandler={(e: MouseEvent<HTMLButtonElement>) => clickHandler(e, () => setCountValue(countValue - 1))}
                 >
                   <MinusIcon />
                 </ButtonWithChild>
                 <span className={s.itemsCount}>{countValue} item{countValue > 1 ? 's' : ''}</span>
-                <ButtonWithChild className={s.button}
-                                 clickHandler={(e: MouseEvent<HTMLButtonElement>) => clickHandler(e, () => setCountValue(countValue + 1))}
+                <ButtonWithChild
+                  className={s.button}
+                  clickHandler={(e: MouseEvent<HTMLButtonElement>) => clickHandler(e, () => setCountValue(countValue + 1))}
                 >
                   <PlusIcon />
                 </ButtonWithChild>
