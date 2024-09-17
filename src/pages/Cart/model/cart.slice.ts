@@ -17,6 +17,8 @@ export const cartSlice = createSlice({
       .addCase(getCartByUser.fulfilled, (state, action) => {
         if (action.payload.carts[0]) {
           state.cartData.products = action.payload.carts[0].products
+        } else {
+          state.cartData.products = []
         }
       })
   }

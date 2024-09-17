@@ -28,9 +28,8 @@ export const Cart = () => {
       <main className={s.cart}>
         <Container containerClassName={s.cartContainer}>
           <Title tag={'h2'}>My cart</Title>
-          {products.length === 0
-            ? <Title tag={'h3'}>Cart is empty</Title> :
-            (
+          {products.length > 0
+            ? (
               <div className={s.cartRow}>
                 <div className={s.itemsWrapper}>
                   {products.length > 0 && products.map((item: ItemProps) => (
@@ -41,7 +40,9 @@ export const Cart = () => {
                   <CartPrices/>
                 </div>
               </div>
-            )}
+            ) :
+            <div className={s.noItems}>No items</div>
+            }
         </Container>
       </main>
     </>

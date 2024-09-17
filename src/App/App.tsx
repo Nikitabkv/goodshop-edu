@@ -32,7 +32,12 @@ export const App = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getCartByUser(14))
+    dispatch(getCartByUser(
+      // 14: Корзина пустая
+      // 15: Корзина с 6 товарами
+      // 14
+      15
+    ))
   }, [])
 
   return (
