@@ -7,7 +7,7 @@ import Product from "../pages/Product"
 import NotFoundPage from "../pages/NotFoundPage"
 import {useEffect} from "react"
 import {getCartByUser} from "../pages/Cart/model/cartAsyncThunk.ts"
-import {useAppDispatch} from "./store/hooks.ts";
+import {useAppDispatch} from "./store/hooks.ts"
 
 const router = createBrowserRouter([
   {

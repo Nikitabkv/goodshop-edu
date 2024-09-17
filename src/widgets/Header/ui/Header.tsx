@@ -6,7 +6,7 @@ import NavLink from "../../../features/NavLink"
 import {useAppSelector} from "../../../App/store/hooks.ts"
 
 export const Header = () => {
-  const cartCount = useAppSelector(state => state.cart.cartData.products)
+  const cartCount = useAppSelector(state => state.cart.cartData.totalQuantity)
 
   return (
     <header className={s.header}>
@@ -24,7 +24,7 @@ export const Header = () => {
             <NavLink to={"/cart"}>
               Cart
               <CartIcon aria-hidden="true" />
-              {cartCount.length ? <span className={s.counter}>{cartCount.length}</span> : ''}
+              {cartCount > 0 ? <span className={s.counter}>{cartCount}</span> : ''}
             </NavLink>
             <NavLink to={"#"}>Johnson Smith</NavLink>
           </nav>
