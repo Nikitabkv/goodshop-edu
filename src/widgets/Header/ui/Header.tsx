@@ -3,28 +3,34 @@ import {Link} from "react-router-dom"
 import Container from "../../../shared/ui-kit/Container"
 import {CartIcon} from "../../../shared/icons"
 import NavLink from "../../../features/NavLink"
+import {useAppSelector} from "../../../App/store/hooks.ts"
 
-export const Header = () => (
-  <header className={s.header}>
-    <Container>
-      <div className={s.container}>
-        <Link to={'/'}>
+export const Header = () => {
+  const cartCount = useAppSelector(state => state.cart.cartData.products)
+
+  return (
+    <header className={s.header}>
+      <Container>
+        <div className={s.container}>
+          <Link to={'/'}>
           <span className={s.logo}>
             Goods4you
           </span>
-        </Link>
+          </Link>
 
-        <nav className={s.nav}>
-          <NavLink to={"/#catalog"}>Catalog</NavLink>
-          <NavLink to={"/#faq"}>FAQ</NavLink>
-          <NavLink to={"/cart"}>
-            Cart
-            <CartIcon aria-hidden="true" />
-            <span className={s.counter}>99+</span>
-          </NavLink>
-          <NavLink to={"#"}>Johnson Smith</NavLink>
-        </nav>
-      </div>
-    </Container>
-  </header>
-)
+          <nav className={s.nav}>
+            <NavLink to={"/#catalog"}>Catalog</NavLink>
+            <NavLink to={"/#faq"}>FAQ</NavLink>
+            <NavLink to={"/cart"}>
+              Cart
+              <CartIcon aria-hidden="true" />
+              {cartCount.length ? <span className={s.counter}>{cartCount.length}</span> : ''}
+            </NavLink>
+            <NavLink to={"#"}>Johnson Smith</NavLink>
+          </nav>
+        </div>
+      </Container>
+    </header>
+  )
+
+}

@@ -3,11 +3,7 @@ import {createSlice} from "@reduxjs/toolkit"
 
 const initialState = {
   cartData: {
-    carts: [
-      {
-        products: []
-      }
-    ]
+    products: [],
   }
 }
 
@@ -19,7 +15,9 @@ export const cartSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getCartByUser.fulfilled, (state, action) => {
-        state.cartData = action.payload
+        if (action.payload.carts[0]) {
+          state.cartData.products = action.payload.carts[0].products
+        }
       })
   }
 })

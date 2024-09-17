@@ -17,7 +17,7 @@ interface ItemProps {
 }
 
 export const Cart = () => {
-  const cartData = useSelector((state: RootState) => state.cart.cartData.carts[0])
+  const products = useSelector((state: RootState) => state.cart.cartData.products)
 
   return (
     <>
@@ -28,12 +28,12 @@ export const Cart = () => {
       <main className={s.cart}>
         <Container containerClassName={s.cartContainer}>
           <Title tag={'h2'}>My cart</Title>
-          {cartData.products.length === 0
+          {products.length === 0
             ? <Title tag={'h3'}>Cart is empty</Title> :
             (
               <div className={s.cartRow}>
                 <div className={s.itemsWrapper}>
-                  {cartData.products.length > 0 && cartData.products.map((item: ItemProps) => (
+                  {products.length > 0 && products.map((item: ItemProps) => (
                     <CartItem key={item.id} item={item}/>
                   ))}
                 </div>

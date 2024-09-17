@@ -32,7 +32,7 @@ export const App = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(getCartByUser(15))
+    dispatch(getCartByUser(14))
   }, [])
 
   return (
