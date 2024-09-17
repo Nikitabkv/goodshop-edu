@@ -3,83 +3,34 @@ import Container from "../../../shared/ui-kit/Container"
 import Title from "../../../shared/ui-kit/Title"
 import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
 import CatalogItem from "../../../features/CatalogItem"
+import {useGetCatalogQuery} from "../model/api.ts"
+import {useEffect, useState} from "react"
 
-const mockCatalogItems = [
-  {
-    id: 1,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 2,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 3,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 4,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 1
-  },
-  {
-    id: 5,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 6,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 7,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 8,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 9,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 10,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 11,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 12,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  }
-]
+interface ProductItem {
+  id: number
+  title: string
+  price: number
+  thumbnail: string
+}
+
+const LIMIT = 12
 
 export const CatalogSection = () => {
+  const [products, setProducts] = useState([] as ProductItem[])
+  const [skip, setSkip] = useState(0)
+  const {data, error, isFetching} = useGetCatalogQuery({
+    text: '',
+    limit: LIMIT,
+    skip: skip,
+  })
+
+  useEffect(() => {
+    if (data) {
+      setProducts(products.concat(data.products))
+    } else if (error) {
+      console.log(error)
+    }
+  }, [data])
 
   return (
     <Container Tag={'section'} wrapperClassName={s.catalog}>
@@ -89,11 +40,15 @@ export const CatalogSection = () => {
         </Title>
         <input className={s.searchByTitle} type={'text'} placeholder={'Search by title'}/>
         <div className={s.catalogItems}>
-          {mockCatalogItems.map(item => <CatalogItem key={item.id} item={item} />)}
+          {error && 'Unable to load data, please try again later'}
+          {products.map(item => <CatalogItem key={item.id} item={item}/>)}
         </div>
-        <ButtonWithChild ariaLabel={'show more'} className={s.showMore} clickHandler={() => console.log('click')}>
-          Show more
-        </ButtonWithChild>
+        {
+          data && (skip + LIMIT) < data.total &&
+          <ButtonWithChild ariaLabel={'show more'} className={s.showMore} clickHandler={() => setSkip(skip + LIMIT)}>
+            {isFetching ? 'Loading...' : 'Show more'}
+          </ButtonWithChild>
+        }
       </div>
     </Container>
   )

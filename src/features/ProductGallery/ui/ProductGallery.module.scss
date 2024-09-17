@@ -13,17 +13,27 @@
   max-height: 520px;
   border-radius: 4px;
   border: 1px solid $gray-200;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+  }
 }
 
 .slider {
   display: flex;
+  width: 100%;
   gap: 20px;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .sliderImage {
   border: 1px solid $gray-200;
   border-radius: 4px;
+  width: 70px;
+  height: 70px;
+  text-align: center;
 
   &.active {
     border: 1px solid $violet;
@@ -33,7 +43,6 @@
 @media screen and (max-width: 1380px) {
   .gallery {
     max-width: 360px;
-    flex-basis: 0;
   }
 }
 
@@ -48,9 +57,14 @@
     }
   }
   .slider {
-    max-width: 100%;
-    max-height: 100%;
-    overflow-x: auto;
+    justify-content: center;
+  }
+}
 
+@media screen and (max-width: 560px) {
+  .gallery {
+    .galleryImg {
+      max-height: 400px;
+    }
   }
 }

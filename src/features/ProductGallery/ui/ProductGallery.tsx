@@ -12,18 +12,18 @@ export const ProductGallery:FC<ProductGalleryProps> = ({imgs, name}) => {
   return (
     <div className={s.gallery}>
       <div className={s.galleryImg}>
-        <img src={imgs[activeImg]} alt={name} width={'100%'} height={'100%'}/>
+        <img src={imgs[activeImg]} alt={name} height={'100%'}/>
       </div>
       <div className={s.slider}>
         {imgs.map((img, index) => (
-          <img
-            onClick={() => setActiveImg(index)}
-            key={index}
-            src={img}
-            alt={name}
-            className={s.sliderImage + (activeImg === index ? ' ' + s.active : '')}
-            width={70}
-          />
+          <div key={index} className={s.sliderImage + (activeImg === index ? ' ' + s.active : '')}>
+            <img
+              onClick={() => setActiveImg(index)}
+              src={img}
+              alt={name}
+              height={70}
+            />
+          </div>
         ))}
       </div>
     </div>

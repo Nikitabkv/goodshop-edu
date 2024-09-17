@@ -1,22 +1,35 @@
 import s from "./CatalogItem.module.scss"
-import catalogImg from "../../../shared/mockFiles/catalogImg.png"
 import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
-import {CartIcon, MinusIcon, PlusIcon} from "../../../shared/icons";
-import {FC, MouseEvent, useState} from "react";
-import {Link} from "react-router-dom";
+import {CartIcon, MinusIcon, PlusIcon} from "../../../shared/icons"
+import {FC, MouseEvent, useState} from "react"
+import {Link} from "react-router-dom"
+import {useAppSelector} from "../../../App/store/hooks.ts"
 
 interface CatalogItemProps {
   item: {
     id: number
-    name: string
+    title: string
     price: number
-    count: number
+    thumbnail: string
   }
 }
-// Essence Mascara Lash Princess
+interface Product {
+  id: number,
+  quantity: number
+}
+interface ProductState  {
+  cart: {
+    cartData: {
+      products: Product[]
+    }
+  }
+}
+
 export const CatalogItem:FC<CatalogItemProps> = ({item}) => {
-  const {id, name, price, count} = item
-  const [countValue, setCountValue] = useState(count)
+  const {id, title, price, thumbnail} = item
+  const product = useAppSelector((state: ProductState) =>
+    state.cart.cartData.products.find((product) => product.id === id))
+  const [countValue, setCountValue] = useState(product?.quantity || 0)
 
   const clickHandler = (e: MouseEvent, foo: () => void) => {
     e.preventDefault();
@@ -26,10 +39,10 @@ export const CatalogItem:FC<CatalogItemProps> = ({item}) => {
   return (
     <Link to={`/product/${id}`}>
       <div className={s.catalogItem}>
-        <img src={catalogImg} alt={'Essence Mascara Lash Princess'}/>
+        <img src={thumbnail} alt={'Essence Mascara Lash Princess'}/>
         <div className={s.manageItems}>
           <div className={s.info}>
-            <span title={name} className={s.name}>{name}</span>
+            <span title={title} className={s.name}>{title}</span>
             <span className={s.price}>${price}</span>
           </div>
           <div className={s.buttons}>
