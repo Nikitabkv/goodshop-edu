@@ -5,6 +5,7 @@ import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
 import CatalogItem from "../../../features/CatalogItem"
 import {useGetCatalogQuery} from "../../../features/Products/model/api.ts"
 import {useEffect, useState} from "react"
+import useDebounce from "../../../hooks/useDebounce.ts"
 
 interface ProductItem {
   id: number
@@ -18,20 +19,27 @@ const LIMIT = 12
 export const CatalogSection = () => {
   const [products, setProducts] = useState([] as ProductItem[])
   const [skip, setSkip] = useState(0)
+  const [inputValue, setInputValue] = useState('')
+  const [showMoreClicked, setShowMoreClicked] = useState(false)
+  const debouncedValue = useDebounce(inputValue, 750)
   const {data, error, isFetching} = useGetCatalogQuery({
-    text: '',
+    text: debouncedValue,
     limit: LIMIT,
     skip: skip,
   })
 
   useEffect(() => {
-    console.log(data)
     if (data) {
-      setProducts(products.concat(data.products))
+      if (showMoreClicked) {
+        setProducts(products.concat(data.products))
+        setShowMoreClicked(false)
+      } else {
+        setProducts(data.products)
+      }
     } else if (error) {
       console.log(error)
     }
-  }, [data])
+  }, [data, error, showMoreClicked])
 
   return (
     <Container Tag={'section'} wrapperClassName={s.catalog}>
@@ -39,14 +47,17 @@ export const CatalogSection = () => {
         <Title tag={'h2'}>
           Catalog
         </Title>
-        <input className={s.searchByTitle} type={'text'} placeholder={'Search by title'}/>
+        <input className={s.searchByTitle} type={'text'} placeholder={'Search by title'} value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
         <div className={s.catalogItems}>
           {error && 'Unable to load data, please try again later'}
           {products.map(item => <CatalogItem key={item.id} item={item}/>)}
         </div>
         {
           data && (skip + LIMIT) < data.total &&
-          <ButtonWithChild ariaLabel={'show more'} className={s.showMore} clickHandler={() => setSkip(skip + LIMIT)}>
+          <ButtonWithChild ariaLabel={'show more'} className={s.showMore} clickHandler={() => {
+            setShowMoreClicked(true)
+            setSkip(skip + LIMIT)
+          }}>
             {isFetching ? 'Loading...' : 'Show more'}
           </ButtonWithChild>
         }
