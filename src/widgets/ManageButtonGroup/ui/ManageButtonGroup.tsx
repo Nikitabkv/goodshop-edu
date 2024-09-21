@@ -1,11 +1,14 @@
-import s from "./ManageButtonGroup.module.scss";
-import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild";
-import {FC, MouseEvent} from "react";
-import {CartIcon, MinusIcon, PlusIcon} from "../../../shared/icons";
+import s from "./ManageButtonGroup.module.scss"
+import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
+import {FC, MouseEvent} from "react"
+import {CartIcon, MinusIcon, PlusIcon, BigMinusIcon, BigPlusIcon} from "../../../shared/icons"
 
 interface ManageButtonGroupProps {
   countValue: number
   setCountValue: (value: number) => void
+  cartButtonClassName?: string
+  buttonClassName?: string
+  iconSize?: string
 }
 
 const clickHandler = (e: MouseEvent, foo: () => void) => {
@@ -13,26 +16,40 @@ const clickHandler = (e: MouseEvent, foo: () => void) => {
   foo()
 }
 
+const icons = {
+  s: {
+    minus: MinusIcon,
+    plus: PlusIcon
+  },
+  l: {
+    minus: BigMinusIcon,
+    plus: BigPlusIcon
+  }
+}
 
-export const ManageButtonGroup:FC<ManageButtonGroupProps> = ({countValue, setCountValue}) => {
+
+export const ManageButtonGroup:FC<ManageButtonGroupProps> = ({countValue, setCountValue, buttonClassName, cartButtonClassName, iconSize = 's'}) => {
+  const SizedMinusIcon = icons[iconSize as keyof typeof icons].minus
+  const SizedPlusIcon = icons[iconSize as keyof typeof icons].plus
+
   return (
     <div className={s.buttons}>
       {countValue === 0 ? (
         <ButtonWithChild
           ariaLabel={'Add to cart'}
-          className={s.button}
+          className={s.button + (cartButtonClassName ? ' ' + cartButtonClassName : '')}
           clickHandler={(e: MouseEvent<HTMLButtonElement>) => clickHandler(e, () => setCountValue(1))}
         >
-          <CartIcon aria-hidden="true" width={18} height={18}/>
+          {iconSize === 's' ? <CartIcon aria-hidden="true" width={18} height={18}/> : 'Add to cart'}
         </ButtonWithChild>
       ) : (
         <>
           <ButtonWithChild
             ariaLabel={'Reduce the number of items'}
-            className={s.button}
+            className={s.button + (buttonClassName ? ' ' + buttonClassName : '')}
             clickHandler={(e: MouseEvent<HTMLButtonElement>) => clickHandler(e, () => setCountValue(countValue - 1))}
           >
-            <MinusIcon aria-hidden="true"/>
+            <SizedMinusIcon aria-hidden="true"/>
           </ButtonWithChild>
           <span
             aria-label={`${countValue} item${countValue > 1 ? 's' : ''}`}
@@ -43,10 +60,10 @@ export const ManageButtonGroup:FC<ManageButtonGroupProps> = ({countValue, setCou
                 </span>
           <ButtonWithChild
             ariaLabel={'Increase the number of items'}
-            className={s.button}
+            className={s.button + (buttonClassName ? ' ' + buttonClassName : '')}
             clickHandler={(e: MouseEvent<HTMLButtonElement>) => clickHandler(e, () => setCountValue(countValue + 1))}
           >
-            <PlusIcon aria-hidden="true"/>
+            <SizedPlusIcon aria-hidden="true"/>
           </ButtonWithChild>
         </>
       )

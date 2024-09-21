@@ -87,7 +87,13 @@ export const ProductInfo:FC<ProductInfoProps> = ({item, id}) => {
             <span className={s.percent}>{discountPercentage}%</span>
           </div>
         </div>
-        <ManageButtonGroup countValue={countValue} setCountValue={(value: number) => setCountValue(value)} />
+        <ManageButtonGroup
+          countValue={countValue}
+          setCountValue={(value: number) => setCountValue(value)}
+          buttonClassName={s.buttonClassName}
+          cartButtonClassName={s.cartButton}
+          iconSize={'l'}
+        />
       </div>
     </div>
   )
