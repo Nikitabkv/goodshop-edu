@@ -3,7 +3,7 @@ import Container from "../../../shared/ui-kit/Container"
 import ProductGallery from "../../../features/ProductGallery"
 import ProductInfo from "../../../features/ProductInfo"
 import {Helmet} from "react-helmet"
-import {useGetProductQuery} from "../../../widgets/CatalogSection/model/api.ts"
+import {useGetProductQuery} from "../../../features/Products/model/api.ts"
 import {Navigate, useParams} from "react-router-dom"
 
 export const Product = () => {

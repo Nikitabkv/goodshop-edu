@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
 import {cartSlice} from "../../pages/Cart/model/cart.slice.ts";
-import {catalogSectionApi} from "../../widgets/CatalogSection/model/api.ts"
+import {catalogSectionApi} from "../../features/Products/model/api.ts"
 
 export const store = configureStore({
   reducer: {

@@ -3,7 +3,7 @@ import Container from "../../../shared/ui-kit/Container"
 import Title from "../../../shared/ui-kit/Title"
 import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
 import CatalogItem from "../../../features/CatalogItem"
-import {useGetCatalogQuery} from "../model/api.ts"
+import {useGetCatalogQuery} from "../../../features/Products/model/api.ts"
 import {useEffect, useState} from "react"
 
 interface ProductItem {
@@ -25,6 +25,7 @@ export const CatalogSection = () => {
   })
 
   useEffect(() => {
+    console.log(data)
     if (data) {
       setProducts(products.concat(data.products))
     } else if (error) {

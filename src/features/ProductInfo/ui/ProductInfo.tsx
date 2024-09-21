@@ -1,8 +1,8 @@
 import s from './ProductInfo.module.scss'
 import Title from "../../../shared/ui-kit/Title"
-import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
-import {FC} from "react"
+import {FC, useState} from "react"
 import {useAppSelector} from "../../../App/store/hooks.ts"
+import {ManageButtonGroup} from "../../../widgets/ManageButtonGroup/ui/ManageButtonGroup.tsx"
 
 interface ProductInfoProps {
   item: {
@@ -43,9 +43,9 @@ export const ProductInfo:FC<ProductInfoProps> = ({item, id}) => {
     tags,
   } = item
   const discountedPrice = (price - (discountPercentage * price) / 100).toFixed(2)
-
   const product = useAppSelector((state: ProductState) =>
     state.cart.cartData.products.find((product) => product.id === id))
+  const [countValue, setCountValue] = useState(product?.quantity || 0)
 
   return (
     <div className={s.itemInfo}>
@@ -87,15 +87,7 @@ export const ProductInfo:FC<ProductInfoProps> = ({item, id}) => {
             <span className={s.percent}>{discountPercentage}%</span>
           </div>
         </div>
-        {product ? (
-          <ButtonWithChild ariaLabel={'Remove from cart'} className={s.addToCartButton} clickHandler={() => {}}>
-            {product.quantity}
-          </ButtonWithChild>
-        ) : (
-          <ButtonWithChild ariaLabel={'Add to cart'} className={s.addToCartButton} clickHandler={() => {}}>
-            Add to cart
-          </ButtonWithChild>
-        )}
+        <ManageButtonGroup countValue={countValue} setCountValue={(value: number) => setCountValue(value)} />
       </div>
     </div>
   )

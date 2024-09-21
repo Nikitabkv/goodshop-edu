@@ -1,9 +1,10 @@
 import s from "./CartItem.module.scss"
 import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
-import {FC, useState} from "react"
+import {FC, useEffect, useState} from "react"
 import {Link} from "react-router-dom"
 import {Title} from "../../../shared/ui-kit/Title/ui/Title.tsx"
-import {CartIcon, MinusIcon, PlusIcon} from "../../../shared/icons"
+import {CartIcon} from "../../../shared/icons"
+import ManageButtonGroup from "../../../widgets/ManageButtonGroup"
 
 interface CartItemProps {
   item: {
@@ -19,10 +20,20 @@ interface CartItemProps {
 export const CartItem:FC<CartItemProps> = ({item}) => {
   const {title, thumbnail, quantity, price, isDeleted} = item
   const [quantityValue, setQuantityValue] = useState(quantity)
+  const [isDeletedFlag, setIsDeletedValue] = useState(isDeleted)
+
+  const deleteClickHandler = () => {
+    setIsDeletedValue(true)
+    setQuantityValue(0)
+  }
+
+  useEffect(() => {
+    if (quantityValue === 0) setIsDeletedValue(true)
+  }, [quantityValue]);
 
   return (
-    <div className={s.item + ' ' + (isDeleted ? s.removed : '')}>
-      <div className={s.itemInfo + ' ' + (isDeleted ? s.removed : '')}>
+    <div className={s.item + ' ' + (isDeletedFlag ? s.removed : '')}>
+      <div className={s.itemInfo + ' ' + (isDeletedFlag ? s.removed : '')}>
         <img src={thumbnail} alt="Essence Mascara Lash Princess" width={100} height={100} />
         <div className={s.itemPriceCol}>
           <Title tag={'h3'} tabIndex={-1}>
@@ -37,33 +48,21 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
       </div>
 
       <div className={s.manageItem}>
-        {!isDeleted ? (
+        {!isDeletedFlag ? (
           <>
             <div className={s.addRemoveButtons}>
-              <ButtonWithChild
-                ariaLabel={'Reduce the number of items'}
-                className={s.button}
-                disabled={quantityValue <= 0}
-                clickHandler={() => setQuantityValue(quantityValue - 1)}>
-                <MinusIcon aria-hidden="true" />
-              </ButtonWithChild>
-              <span tabIndex={0} aria-label={`${quantityValue} ${quantityValue > 1 ? 'items' : 'item'}`}>
-                {quantityValue} {quantityValue > 1 ? 'items' : 'item'}
-              </span>
-              <ButtonWithChild
-                ariaLabel={'Increase the number of items'}
-                className={s.button}
-                clickHandler={() => setQuantityValue(quantityValue + 1)}>
-                <PlusIcon aria-hidden="true" />
-              </ButtonWithChild>
+              <ManageButtonGroup countValue={quantityValue} setCountValue={(quantityValue) => setQuantityValue(quantityValue)}/>
             </div>
-            <button className={s.deleteButton}>Delete</button>
+            <button className={s.deleteButton} onClick={() => deleteClickHandler()}>Delete</button>
           </>
         ) : (
           <div className={s.restoreButtonWrapper}>
             <ButtonWithChild
               className={s.restoreButton}
-              clickHandler={() => console.log('Добавить в корзину')}
+              clickHandler={() => {
+                setIsDeletedValue(false)
+                setQuantityValue(1)
+              }}
               ariaLabel={'Return item to cart'}>
               <CartIcon aria-hidden="true" />
             </ButtonWithChild>
