@@ -59,6 +59,7 @@ export const CatalogSection = () => {
         </Title>
         <input className={s.searchByTitle} type={'text'} placeholder={'Search by title'} value={inputValue} onChange={(e) => onSearchHandler(e)}/>
         <div className={s.catalogItems}>
+          {isFetching && 'Loading...'}
           {error && 'Unable to load data, please try again later'}
           {products.map(item => <CatalogItem key={item.id} item={item}/>)}
         </div>
