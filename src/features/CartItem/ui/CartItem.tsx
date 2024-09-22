@@ -4,7 +4,7 @@ import {FC, useEffect, useState} from "react"
 import {Link} from "react-router-dom"
 import {Title} from "../../../shared/ui-kit/Title/ui/Title.tsx"
 import {CartIcon} from "../../../shared/icons"
-import ManageButtonGroup from "../../../widgets/ManageButtonGroup"
+import ManageButtonGroup from "../../ManageButtonGroup"
 
 interface CartItemProps {
   item: {

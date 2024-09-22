@@ -21,7 +21,7 @@ export const QuestionItem:FC<QuestionProps> = ({question, answer, isOpen = false
       >
         <span className={s.question}>{question}</span>
         <span className={s.crossIconWrapper + (questionIsOpen ? ' ' + s.open : '')}>
-          <CrossIcon aria-hidden="true" />
+          <CrossIcon aria-hidden="true"/>
         </span>
       </div>
       <p tabIndex={0} className={s.answerLine + (questionIsOpen ? ' ' + s.open : '')}>

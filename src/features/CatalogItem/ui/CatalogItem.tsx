@@ -2,7 +2,7 @@ import s from "./CatalogItem.module.scss"
 import {FC, useState} from "react"
 import {Link} from "react-router-dom"
 import {useAppSelector} from "../../../App/store/hooks.ts"
-import ManageButtonGroup from "../../../widgets/ManageButtonGroup";
+import ManageButtonGroup from "../../ManageButtonGroup";
 
 interface CatalogItemProps {
   item: {

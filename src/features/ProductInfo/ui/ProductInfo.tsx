@@ -2,7 +2,7 @@ import s from './ProductInfo.module.scss'
 import Title from "../../../shared/ui-kit/Title"
 import {FC, useState} from "react"
 import {useAppSelector} from "../../../App/store/hooks.ts"
-import {ManageButtonGroup} from "../../../widgets/ManageButtonGroup/ui/ManageButtonGroup.tsx"
+import {ManageButtonGroup} from "../../ManageButtonGroup/ui/ManageButtonGroup.tsx"
 
 interface ProductInfoProps {
   item: {
