@@ -1,5 +1,6 @@
 import {getCartByUser} from "./cartAsyncThunk.ts"
 import {createSlice} from "@reduxjs/toolkit"
+import {toast} from "react-toastify"
 
 const initialState = {
   cartData: {
@@ -23,6 +24,9 @@ export const cartSlice = createSlice({
           state.cartData.products = []
           state.cartData.totalQuantity = 0
         }
+      })
+      .addCase(getCartByUser.rejected, () => {
+        toast.error('An error occurred while loading the user cart. Try to reload page or back later');
       })
   }
 })

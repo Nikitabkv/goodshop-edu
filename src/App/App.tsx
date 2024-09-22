@@ -8,6 +8,8 @@ import NotFoundPage from "../pages/NotFoundPage"
 import {useEffect} from "react"
 import {getCartByUser} from "../pages/Cart/model/cartAsyncThunk.ts"
 import {useAppDispatch} from "./store/hooks.ts"
+import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer} from "react-toastify";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,9 @@ export const App = () => {
   }, [])
 
   return (
-    <RouterProvider router={router} />
+    <>
+      <RouterProvider router={router}/>
+      <ToastContainer autoClose={10000} />
+    </>
   )
 }
