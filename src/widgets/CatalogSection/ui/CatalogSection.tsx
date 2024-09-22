@@ -4,7 +4,7 @@ import Title from "../../../shared/ui-kit/Title"
 import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
 import CatalogItem from "../../../features/CatalogItem"
 import {useGetCatalogQuery} from "../../../features/Products/model/api.ts"
-import {useEffect, useState} from "react"
+import {useEffect, useState, ChangeEvent} from "react"
 import useDebounce from "../../../hooks/useDebounce.ts"
 
 interface ProductItem {
@@ -39,7 +39,17 @@ export const CatalogSection = () => {
     } else if (error) {
       console.log(error)
     }
-  }, [data, error, showMoreClicked])
+  }, [data, error])
+
+  const showMoreHandler = () => {
+    setShowMoreClicked(true)
+    setSkip(skip + LIMIT)
+  }
+
+  const onSearchHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setSkip(0)
+    setInputValue(e.target.value)
+  }
 
   return (
     <Container Tag={'section'} wrapperClassName={s.catalog}>
@@ -47,17 +57,14 @@ export const CatalogSection = () => {
         <Title tag={'h2'}>
           Catalog
         </Title>
-        <input className={s.searchByTitle} type={'text'} placeholder={'Search by title'} value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+        <input className={s.searchByTitle} type={'text'} placeholder={'Search by title'} value={inputValue} onChange={(e) => onSearchHandler(e)}/>
         <div className={s.catalogItems}>
           {error && 'Unable to load data, please try again later'}
           {products.map(item => <CatalogItem key={item.id} item={item}/>)}
         </div>
         {
           data && (skip + LIMIT) < data.total &&
-          <ButtonWithChild ariaLabel={'show more'} className={s.showMore} clickHandler={() => {
-            setShowMoreClicked(true)
-            setSkip(skip + LIMIT)
-          }}>
+          <ButtonWithChild ariaLabel={'show more'} className={s.showMore} clickHandler={() => showMoreHandler()}>
             {isFetching ? 'Loading...' : 'Show more'}
           </ButtonWithChild>
         }
