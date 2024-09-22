@@ -5,7 +5,9 @@ import {toast} from "react-toastify"
 const initialState = {
   cartData: {
     products: [],
-    totalQuantity: 0
+    totalQuantity: 0,
+    discountedTotal: 0,
+    total: 0,
   }
 }
 
@@ -20,6 +22,8 @@ export const cartSlice = createSlice({
         if (action.payload.carts[0]) {
           state.cartData.products = action.payload.carts[0].products
           state.cartData.totalQuantity = action.payload.carts[0].totalQuantity
+          state.cartData.total = action.payload.carts[0].total
+          state.cartData.discountedTotal = action.payload.carts[0].discountedTotal
         } else {
           state.cartData.products = []
           state.cartData.totalQuantity = 0
