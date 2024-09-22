@@ -6,6 +6,7 @@ import CartItem from "../../../features/CartItem"
 import Title from "../../../shared/ui-kit/Title"
 import CartPrices from "../../../features/CartPrices"
 import {RootState} from "../../../App/store"
+import {useAppSelector} from "../../../App/store/hooks.ts";
 
 interface ItemProps {
   id: number
@@ -18,6 +19,7 @@ interface ItemProps {
 
 export const Cart = () => {
   const products = useSelector((state: RootState) => state.cart.cartData.products)
+  const isFetching = useAppSelector((state) => state.cart.isFetching)
 
   return (
     <>
@@ -27,22 +29,27 @@ export const Cart = () => {
       </Helmet>
       <main className={s.cart}>
         <Container containerClassName={s.cartContainer}>
-          <Title tag={'h2'}>My cart</Title>
-          {products.length > 0
-            ? (
-              <div className={s.cartRow}>
-                <div className={s.itemsWrapper}>
-                  {products.length > 0 && products.map((item: ItemProps) => (
-                    <CartItem key={item.id} item={item}/>
-                  ))}
-                </div>
-                <div className={s.itemsPrice}>
-                  <CartPrices/>
-                </div>
-              </div>
-            ) :
-            <div className={s.noItems}>No items</div>
-            }
+          {isFetching && <div className={s.loading}>Loading...</div>}
+          {!isFetching && (
+            <>
+              <Title tag={'h2'}>My cart</Title>
+              {products.length > 0
+                ? (
+                  <div className={s.cartRow}>
+                    <div className={s.itemsWrapper}>
+                      {products.length > 0 && products.map((item: ItemProps) => (
+                        <CartItem key={item.id} item={item}/>
+                      ))}
+                    </div>
+                    <div className={s.itemsPrice}>
+                      <CartPrices/>
+                    </div>
+                  </div>
+                ) :
+                <div className={s.noItems}>No items</div>
+              }
+            </>
+          )}
         </Container>
       </main>
     </>

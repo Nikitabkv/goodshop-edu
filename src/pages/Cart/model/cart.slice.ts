@@ -8,7 +8,8 @@ const initialState = {
     totalQuantity: 0,
     discountedTotal: 0,
     total: 0,
-  }
+  },
+  isFetching: false
 }
 
 export const cartSlice = createSlice({
@@ -28,9 +29,14 @@ export const cartSlice = createSlice({
           state.cartData.products = []
           state.cartData.totalQuantity = 0
         }
+        state.isFetching = false
       })
-      .addCase(getCartByUser.rejected, () => {
+      .addCase(getCartByUser.pending, (state) => {
+        state.isFetching = true
+      })
+      .addCase(getCartByUser.rejected, (state) => {
         toast.error('An error occurred while loading the user cart. Try to reload page or back later');
+        state.isFetching = false
       })
   }
 })
