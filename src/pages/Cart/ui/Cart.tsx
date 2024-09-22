@@ -29,10 +29,10 @@ export const Cart = () => {
       </Helmet>
       <main className={s.cart}>
         <Container containerClassName={s.cartContainer}>
+          <Title tag={'h2'}>My cart</Title>
           {isFetching && <div className={s.loading}>Loading...</div>}
-          {!isFetching && (
+          {!isFetching &&
             <>
-              <Title tag={'h2'}>My cart</Title>
               {products.length > 0
                 ? (
                   <div className={s.cartRow}>
@@ -49,7 +49,7 @@ export const Cart = () => {
                 <div className={s.noItems}>No items</div>
               }
             </>
-          )}
+          }
         </Container>
       </main>
     </>
