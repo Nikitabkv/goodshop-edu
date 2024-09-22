@@ -1,0 +1,9 @@
+@import './../../../variables';
+
+.title {
+    font-size: $extra-3-large;
+    margin: 0;
+    color: $gray-900;
+    line-height: 56px;
+    font-weight: $bold;
+}

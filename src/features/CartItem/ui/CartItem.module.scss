@@ -1,0 +1,172 @@
+@import "../../../shared/variables";
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  box-sizing: border-box;
+
+  min-height: 124px;
+  padding: 11px;
+  border: 1px solid $gray-200;
+  border-radius: 6px;
+  color: $gray-900;
+
+  transition: 300ms;
+
+  &.removed {
+    border-color: $gray-100;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    .itemPriceCol {
+      h3 {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &:hover {
+    background-color: $gray-100;
+  }
+}
+
+.itemInfo {
+  display: flex;
+  gap: 10px;
+  flex-basis: 362px;
+
+  &.removed {
+    opacity: 0.6;
+  }
+}
+
+.itemPriceCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+
+  h3 {
+    margin: 0;
+    line-height: 22px;
+    font-size: $medium;
+    font-weight: $semi-bold;
+    transition: 300ms;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .price {
+    line-height: 26px;
+    font-size: $large;
+  }
+}
+
+.manageItem {
+  display: flex;
+  justify-content: flex-end;
+  gap: 48px;
+  flex-basis: 286px;
+  flex-grow: 1;
+  padding-right: 12px;
+
+  .addRemoveButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-basis: 188px;
+    min-width: 170px;
+    font-size: $small;
+
+    .button {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+.deleteButton {
+  font-size: $small;
+  line-height: 20px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: $gray-500;
+  transition: 300ms;
+
+  &:hover {
+    color: $gray-900;
+    text-decoration: underline;
+  }
+}
+
+.restoreButton {
+  width: 50px;
+  height: 50px;
+}
+
+@media screen and (max-width: 1180px) {
+  .manageItem {
+    gap: 25px;
+
+    .addRemoveButtons {
+      min-width: 160px;
+    }
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .item {
+    gap: 6px;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .manageItem {
+    flex-direction: column;
+    gap: 10px;
+    flex-basis: 0;
+
+    .addRemoveButtons {
+      flex-basis: 0;
+
+      .button {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+  .restoreButtonWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    .restoreButton {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .item {
+    flex-direction: column;
+  }
+  .itemInfo {
+    justify-content: flex-start;
+    width: 100%;
+    flex-basis: 0;
+  }
+  .manageItem {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .deleteButton {
+    height: 40px;
+  }
+}

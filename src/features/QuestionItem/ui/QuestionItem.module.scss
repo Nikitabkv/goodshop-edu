@@ -1,0 +1,66 @@
+@import "../../../shared/variables";
+
+.wrapper {
+  border-collapse: collapse;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: white;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  transition: 500ms ease;
+}
+
+.wrapper + .wrapper {
+  border-top: none;
+}
+
+.questionLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.crossIconWrapper {
+  transition: 500ms ease;
+  height: 26px;
+  width: 25px;
+
+  &.open {
+    transform: rotate(-45deg);
+  }
+}
+
+.question {
+  font-size: $extra-large;
+  line-height: 40px;
+}
+
+.answerLine {
+  margin: 0;
+  padding-top: 0;
+  max-height: 0;
+  overflow: hidden;
+  font-size: $medium;
+  font-weight: $semi-bold;
+  line-height: 26px;
+  transition: 500ms ease;
+
+  &.open {
+    padding-top: 20px;
+    max-height: 100px;
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .question {
+    font-size: $extra-large;
+    line-height: 25px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .question {
+    font-size: $large;
+  }
+}

@@ -1,0 +1,39 @@
+@import "../../../shared/variables";
+
+.footer {
+    display: flex;
+    justify-content: center;
+    padding: 23px 0;
+    background-color: $gray-900;
+    color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    font-weight: $bold;
+    font-size: $extra-2-large;
+    color: white;
+    line-height: 44px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    font-weight: $semi-bold;
+    font-size: $small;
+    line-height: 20px;
+}
+
+@media screen and (max-width: 420px) {
+    .container {
+        padding: 0;
+        flex-direction: column-reverse;
+        gap: 20px;
+        align-items: center;
+    }
+}
