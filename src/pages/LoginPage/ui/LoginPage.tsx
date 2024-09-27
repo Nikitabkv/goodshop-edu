@@ -7,7 +7,7 @@ import {useLoginMutation} from "../model/api.ts"
 import {toast} from "react-toastify"
 import {useNavigate} from "react-router-dom"
 import {useAppDispatch} from "../../../App/store/hooks.ts";
-import {setUserId} from "../../Cart/model/cart.slice.ts";
+import {setUserData} from "../../Cart/model/cart.slice.ts";
 
 
 export const LoginPage = () => {
@@ -26,7 +26,7 @@ export const LoginPage = () => {
   useEffect(() => {
     if (data) {
       localStorage.setItem('TOKEN', data.accessToken)
-      dispatch(setUserId(data.id))
+      dispatch(setUserData(data))
       toast.success('Login successful. Redirecting to the home page')
       navigate('/')
     }
@@ -41,15 +41,10 @@ export const LoginPage = () => {
         <Container containerClassName={s.loginContainer}>
           <Title tag={'h1'}>Sign in</Title>
           <div className={s.loginForm}>
-            {isLoading && <div className={s.loader}></div>}
-            {!isLoading && (
-              <>
-                <input className={s.input} type="text" placeholder={'Login'} value={username}
-                       onChange={(e) => setUsername(e.target.value)}/>
-                <input className={s.input} type="password" placeholder={'Password'} value={password}
-                       onChange={(e) => setPassword(e.target.value)}/>
-              </>
-            )}
+            <input className={s.input} type="text" placeholder={'Login'} value={username}
+                   onChange={(e) => setUsername(e.target.value)}/>
+            <input className={s.input} type="password" placeholder={'Password'} value={password}
+                   onChange={(e) => setPassword(e.target.value)}/>
             <ButtonWithChild disabled={isLoading} className={s.logInButton}
                              clickHandler={() => login({username, password})}>
             <span className={s.logInText}>

@@ -5,30 +5,31 @@ import Footer from "../widgets/Footer"
 import Cart from "../pages/Cart"
 import Product from "../pages/Product"
 import NotFoundPage from "../pages/NotFoundPage"
-import 'react-toastify/dist/ReactToastify.css';
-import {ToastContainer} from "react-toastify";
-import {LoginPage} from "../pages/LoginPage/ui/LoginPage.tsx";
+import 'react-toastify/dist/ReactToastify.css'
+import {ToastContainer} from "react-toastify"
+import {LoginPage} from "../pages/LoginPage/ui/LoginPage.tsx"
+import CheckTokenLoader from "../features/CheckTokenLoader"
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <><Header /><MainPage /><Footer/></>,
+    element: <CheckTokenLoader><Header /><MainPage /><Footer/></CheckTokenLoader>,
   },
   {
     path: "/cart",
-    element: <><Header /><Cart /><Footer/></>,
+    element: <CheckTokenLoader><Header /><Cart /><Footer/></CheckTokenLoader>,
   },
   {
     path: "product/:id",
-    element: <><Header /><Product /><Footer/></>,
+    element: <CheckTokenLoader><Header /><Product /><Footer/></CheckTokenLoader>,
   },
   {
     path: "/login",
-    element: <><Header/><LoginPage /></>,
+    element: <><Header hideNav={true}/><LoginPage /></>,
   },
   {
     path: "*",
-    element: <><Header /><NotFoundPage /><Footer/></>,
+    element: <CheckTokenLoader><Header /><NotFoundPage /><Footer/></CheckTokenLoader>,
   }
 ])
 

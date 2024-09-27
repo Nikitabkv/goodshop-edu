@@ -10,6 +10,7 @@ const initialState = {
     total: 0,
   },
   userId: 0,
+  userName: '',
   isFetching: false
 }
 
@@ -17,8 +18,9 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    setUserId: (state, action) => {
-      state.userId = action.payload
+    setUserData: (state, action) => {
+      state.userId = action.payload.id
+      state.userName = action.payload.firstName + ' ' + action.payload.lastName
     }
   },
   extraReducers: builder => {
@@ -45,4 +47,4 @@ export const cartSlice = createSlice({
   }
 })
 
-export const {setUserId} = cartSlice.actions
+export const {setUserData} = cartSlice.actions

@@ -18,7 +18,7 @@ interface loginParams {
 }
 
 export const loginApi = createApi({
-  reducerPath: 'productPageApiApi',
+  reducerPath: 'loginApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://dummyjson.com/auth/'
   }),

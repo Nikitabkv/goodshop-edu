@@ -1,0 +1,35 @@
+@import "src/shared/variables";
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 128px;
+  height: 128px;
+  background-color: $violet;
+  overflow: hidden;
+}
+.loader:after{
+  content: '';
+  position: absolute;
+  inset: 8px;
+  margin: auto;
+  background: white;
+}
+.loader:before{
+  content: '';
+  position: absolute;
+  inset: -30px;
+  margin: auto;
+  background: #de3500;
+  animation: diamondLoader 2s linear infinite;
+}
+@keyframes diamondLoader {
+  0%  ,10% {
+    transform: translate(-128px , -128px) rotate(-45deg)
+  }
+  90% , 100% {
+    transform: translate(0px , 0px) rotate(-45deg)
+  }
+}
