@@ -6,16 +6,7 @@ import CartItem from "../../../features/CartItem"
 import Title from "../../../shared/ui-kit/Title"
 import CartPrices from "../../../features/CartPrices"
 import {RootState} from "../../../App/store"
-import {useAppSelector} from "../../../App/store/hooks.ts";
-
-interface ItemProps {
-  id: number
-  price: number
-  title: string
-  thumbnail: string
-  quantity: number
-  isDeleted: boolean
-}
+import {useAppSelector} from "../../../App/store/hooks.ts"
 
 export const Cart = () => {
   const products = useSelector((state: RootState) => state.cart.cartData.products)
@@ -37,7 +28,7 @@ export const Cart = () => {
                 ? (
                   <div className={s.cartRow}>
                     <div className={s.itemsWrapper}>
-                      {products.length > 0 && products.map((item: ItemProps) => (
+                      {products.length > 0 && products.map((item) => (
                         <CartItem key={item.id} item={item}/>
                       ))}
                     </div>
