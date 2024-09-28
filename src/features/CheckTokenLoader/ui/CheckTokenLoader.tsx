@@ -1,6 +1,6 @@
 import s from './CheckTokenLoader.module.scss'
 import {FC, ReactNode, useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {useGetUserInfoQuery} from "../../../pages/LoginPage/model/api.ts"
 import {getCartByUser} from "../../../pages/Cart/model/cartAsyncThunk.ts"
 import {useAppDispatch} from "../../../App/store/hooks.ts"
@@ -9,6 +9,7 @@ import {toast} from "react-toastify";
 
 export const CheckTokenLoader:FC<{children: ReactNode}> = ({children}) => {
   const navigate = useNavigate()
+  const location = useLocation()
   const dispatch = useAppDispatch()
   const [tokenIsChecked, setTokenIsChecked] = useState(false)
   const {data, error, isLoading} = useGetUserInfoQuery()
@@ -19,6 +20,9 @@ export const CheckTokenLoader:FC<{children: ReactNode}> = ({children}) => {
         dispatch(getCartByUser(data.id))
         dispatch(setUserData(data))
         setTokenIsChecked(true)
+        if (location.pathname === '/login') {
+          navigate('/')
+        }
       }
       if (error) {
         toast.error('Auth Error. Redirecting to the login page');

@@ -25,7 +25,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <><Header hideNav={true}/><LoginPage /></>,
+    element: <CheckTokenLoader><Header hideNav={true}/><LoginPage /></CheckTokenLoader>,
   },
   {
     path: "*",
