@@ -22,6 +22,7 @@ export const loginApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://dummyjson.com/auth/'
   }),
+  keepUnusedDataFor: 1,
   endpoints: builder => ({
     login: builder.mutation<UserInfo, loginParams>({
       query: ({username, password}) => ({

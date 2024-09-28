@@ -18,12 +18,6 @@ export const LoginPage = () => {
   const [login, {isLoading, error, data}] = useLoginMutation()
 
   useEffect(() => {
-    if (localStorage.getItem('TOKEN')) {
-      navigate('/')
-    }
-  }, []);
-
-  useEffect(() => {
     if (data) {
       localStorage.setItem('TOKEN', data.accessToken)
       dispatch(setUserData(data))
