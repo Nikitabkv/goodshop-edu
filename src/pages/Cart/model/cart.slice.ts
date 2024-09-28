@@ -82,13 +82,16 @@ export const cartSlice = createSlice({
 
         state.cartData.products.forEach((el: {id: number, quantity: number}, index: number) => {
           if (el.id === action.payload.products[0].id) {
-            console.log('mda')
             state.cartData.products[index] = {
               ...action.payload.products[0],
               discountedTotal: action.payload.products[0].discountedPrice,
             }
           }
         })
+        // Если продукта нет в корзине добавляем его
+        if (!state.cartData.products.find(el => el.id === action.payload.products[0].id)) {
+          state.cartData.products.push(action.payload.products[0])
+        }
         state.isUpdating = false
       })
       .addCase(updateProduct.pending, (state) => {

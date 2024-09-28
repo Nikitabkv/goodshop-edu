@@ -18,17 +18,6 @@ interface ProductInfoProps {
   }
   id: number
 }
-interface Product {
-  id: number,
-  quantity: number
-}
-interface ProductState  {
-  cart: {
-    cartData: {
-      products: Product[]
-    }
-  }
-}
 
 export const ProductInfo:FC<ProductInfoProps> = ({item, id}) => {
   const {
@@ -43,7 +32,7 @@ export const ProductInfo:FC<ProductInfoProps> = ({item, id}) => {
     tags,
   } = item
   const discountedPrice = (price - (discountPercentage * price) / 100).toFixed(2)
-  const product = useAppSelector((state: ProductState) => state.cart.cartData.products.find((product) => product.id === id))
+  const products = useAppSelector((state) => state.cart.cartData.products)
 
   return (
     <div className={s.itemInfo}>
@@ -87,7 +76,7 @@ export const ProductInfo:FC<ProductInfoProps> = ({item, id}) => {
         </div>
         <ManageButtonGroup
           itemId={id}
-          countValue={product?.quantity || 0}
+          countValue={products.find(el => el.id === id)?.quantity || 0}
           buttonClassName={s.buttonClassName}
           cartButtonClassName={s.cartButton}
           iconSize={'l'}
