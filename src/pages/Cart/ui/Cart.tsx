@@ -10,6 +10,7 @@ import {useAppSelector} from "../../../App/store/hooks.ts"
 
 export const Cart = () => {
   const products = useSelector((state: RootState) => state.cart.cartData.products)
+  const removedProducts = useAppSelector((state) => state.cart.cartData.removedProducts)
   const isFetching = useAppSelector((state) => state.cart.isFetching)
 
   return (
@@ -24,11 +25,24 @@ export const Cart = () => {
           {isFetching && <div className={s.loading}>Loading...</div>}
           {!isFetching &&
             <>
-              {products.length > 0
+              {products.concat(removedProducts).length > 0
                 ? (
                   <div className={s.cartRow}>
                     <div className={s.itemsWrapper}>
-                      {products.length > 0 && products.map((item) => (
+                      {/*
+                          Я честно старался сделать
+                          через .concat(), но react мудрит с кеями, а времени не хватает
+                          если убрать key то выходит такое же поведение, не очень красиво, но работает)
+                      */}
+                      {/*
+                         {products.concat(removedProducts).map((item) => (
+                           <CartItem key={item.id} item={item}/>
+                         ))}
+                      */}
+                      {products.map((item) => (
+                        <CartItem key={item.id} item={item}/>
+                      ))}
+                      {removedProducts.map((item) => (
                         <CartItem key={item.id} item={item}/>
                       ))}
                     </div>

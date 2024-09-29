@@ -2,8 +2,9 @@ import s from "./ManageButtonGroup.module.scss"
 import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
 import {FC, MouseEvent} from "react"
 import {CartIcon, MinusIcon, PlusIcon, BigMinusIcon, BigPlusIcon} from "../../../shared/icons"
-import {updateProduct} from "../../../pages/Cart/model/cartAsyncThunk.ts";
-import {useAppDispatch, useAppSelector} from "../../../App/store/hooks.ts";
+import {updateProduct} from "../../../pages/Cart/model/cartAsyncThunk.ts"
+import {useAppDispatch, useAppSelector} from "../../../App/store/hooks.ts"
+import {addRemovedProduct, removeRemovedProduct} from "../../../pages/Cart/model/cart.slice.ts";
 
 interface ManageButtonGroupProps {
   countValue: number
@@ -36,10 +37,33 @@ export const ManageButtonGroup:FC<ManageButtonGroupProps> = ({countValue, itemId
   const updateItemHandler = (evt: MouseEvent, newQuantity: number) => {
     evt.preventDefault();
     if (!isUpdating)  {
+      if (newQuantity === 0) {
+        const removedProduct = newQuantity === 0 && products.find(el => el.id === itemId)
+        if (removedProduct) {
+          dispatch(addRemovedProduct(removedProduct))
+        }
+      }
       dispatch(updateProduct({
         cartId,
-        products: [{id: itemId, quantity: newQuantity}, ...products.filter(el => el.id !== itemId)]
+        products: products.map(el => {
+          if (el.id === itemId) {
+            return {...el, quantity: newQuantity}
+          } else {
+            return el
+          }
+        }).filter(el => el.quantity != 0),
       }))
+    }
+  }
+
+  const addItemHandler = (evt: MouseEvent) => {
+    evt.preventDefault();
+    if (!isUpdating)  {
+      dispatch(updateProduct({
+        cartId,
+        products: [...products, {id: itemId, quantity: 1}]
+      }))
+      dispatch(removeRemovedProduct(itemId))
     }
   }
 
@@ -49,7 +73,7 @@ export const ManageButtonGroup:FC<ManageButtonGroupProps> = ({countValue, itemId
         <ButtonWithChild
           ariaLabel={'Add to cart'}
           className={s.button + (cartButtonClassName ? ' ' + cartButtonClassName : '')}
-          clickHandler={(evt) => updateItemHandler(evt, countValue + 1)}
+          clickHandler={(evt) => addItemHandler(evt)}
         >
           {iconSize === 's' ? <CartIcon aria-hidden="true" width={18} height={18}/> : 'Add to cart'}
         </ButtonWithChild>

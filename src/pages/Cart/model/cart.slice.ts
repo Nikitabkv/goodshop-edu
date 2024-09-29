@@ -17,6 +17,7 @@ interface SliceState {
   cartData: {
     id: number
     products: Product[]
+    removedProducts: Product[]
     totalQuantity: number
     discountedTotal: number
     total: number
@@ -31,6 +32,7 @@ const initialState: SliceState = {
   cartData: {
     id: 0,
     products: [],
+    removedProducts: [],
     totalQuantity: 0,
     discountedTotal: 0,
     total: 0,
@@ -49,8 +51,14 @@ export const cartSlice = createSlice({
       state.userId = action.payload.id
       state.userName = action.payload.firstName + ' ' + action.payload.lastName
     },
-    setUpdateStatus: (state, action) => {
-      state.isUpdating = action.payload
+    addRemovedProduct: (state, action) => {
+      state.cartData.removedProducts.push({
+        ...action.payload,
+        quantity: 0
+      })
+    },
+    removeRemovedProduct: (state, action) => {
+      state.cartData.removedProducts = state.cartData.removedProducts.filter(el => el.id !== action.payload)
     }
   },
   extraReducers: builder => {
@@ -80,18 +88,12 @@ export const cartSlice = createSlice({
         state.cartData.discountedTotal = action.payload.discountedTotal
         state.cartData.total = action.payload.total
 
-        state.cartData.products.forEach((el: {id: number, quantity: number}, index: number) => {
-          if (el.id === action.payload.products[0].id) {
-            state.cartData.products[index] = {
-              ...action.payload.products[0],
-              discountedTotal: action.payload.products[0].discountedPrice,
-            }
-          }
-        })
-        // Если продукта нет в корзине добавляем его
+        state.cartData.products = action.payload.products
+
         if (!state.cartData.products.find(el => el.id === action.payload.products[0].id)) {
           state.cartData.products.push(action.payload.products[0])
         }
+
         state.isUpdating = false
       })
       .addCase(updateProduct.pending, (state) => {
@@ -103,4 +105,4 @@ export const cartSlice = createSlice({
   }
 })
 
-export const {setUserData, setUpdateStatus} = cartSlice.actions
+export const {setUserData, addRemovedProduct, removeRemovedProduct} = cartSlice.actions
