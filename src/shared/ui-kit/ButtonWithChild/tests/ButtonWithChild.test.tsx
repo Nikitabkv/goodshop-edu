@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-import React from 'react'
 import {expect, test} from 'vitest'
 import { render, screen } from '@testing-library/react'
 import ButtonWithChild from "../index.ts"

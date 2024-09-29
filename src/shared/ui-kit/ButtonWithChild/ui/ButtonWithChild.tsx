@@ -1,7 +1,5 @@
 import s from './ButtonWithChild.module.scss'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-import React, {FC, MouseEvent, ReactNode} from "react"
+import {FC, MouseEvent, ReactNode} from "react"
 
 interface ButtonWithChildProps {
   children: ReactNode
