@@ -1,6 +1,10 @@
 import s from "./CartPrices.module.scss"
+import {useAppSelector} from "../../../App/store/hooks.ts";
 
 export const CartPrices = () => {
+  const cartData = useAppSelector((state) => state.cart.cartData)
+  console.log(cartData)
+
   return (
     <>
       <div className={s.itemsCount}>
@@ -8,7 +12,7 @@ export const CartPrices = () => {
           Total count
         </span>
         <span className={s.count}>
-          3 items
+          {cartData.totalQuantity} {cartData.totalQuantity > 1 ? "items" : "item"}
         </span>
       </div>
       <div className={s.totalPrice}>
@@ -16,7 +20,7 @@ export const CartPrices = () => {
           Price without discount
         </span>
         <span className={s.infoPrice}>
-          $700
+          ${cartData.total}
         </span>
       </div>
       <hr className={s.hr}/>
@@ -25,7 +29,7 @@ export const CartPrices = () => {
           Total price
         </span>
         <span className={s.infoPrice}>
-          $590
+          ${cartData.discountedTotal}
         </span>
       </div>
     </>

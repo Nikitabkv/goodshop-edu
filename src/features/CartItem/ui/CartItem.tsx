@@ -1,33 +1,44 @@
 import s from "./CartItem.module.scss"
-import img from "../../../shared/mockFiles/img.png"
 import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
-import {FC, useState} from "react"
+import {FC, useEffect, useState} from "react"
 import {Link} from "react-router-dom"
 import {Title} from "../../../shared/ui-kit/Title/ui/Title.tsx"
-import {CartIcon, MinusIcon, PlusIcon} from "../../../shared/icons"
+import {CartIcon} from "../../../shared/icons"
+import ManageButtonGroup from "../../ManageButtonGroup"
 
 interface CartItemProps {
   item: {
     id: number
-    name: string
     price: number
-    count: number
+    title: string
+    thumbnail: string
+    quantity: number
     isDeleted: boolean
   }
 }
 
 export const CartItem:FC<CartItemProps> = ({item}) => {
-  const {name, price, count, isDeleted} = item
-  const [countValue, setCountValue] = useState(count)
+  const {title, thumbnail, quantity, price, isDeleted} = item
+  const [quantityValue, setQuantityValue] = useState(quantity)
+  const [isDeletedFlag, setIsDeletedValue] = useState(isDeleted)
+
+  const deleteClickHandler = () => {
+    setIsDeletedValue(true)
+    setQuantityValue(0)
+  }
+
+  useEffect(() => {
+    if (quantityValue === 0) setIsDeletedValue(true)
+  }, [quantityValue]);
 
   return (
-    <div className={s.item + ' ' + (isDeleted ? s.removed : '')}>
-      <div className={s.itemInfo + ' ' + (isDeleted ? s.removed : '')}>
-        <img src={img} alt="Essence Mascara Lash Princess" width={100} height={100} />
+    <div className={s.item + ' ' + (isDeletedFlag ? s.removed : '')}>
+      <div className={s.itemInfo + ' ' + (isDeletedFlag ? s.removed : '')}>
+        <img src={thumbnail} alt="Essence Mascara Lash Princess" width={100} height={100} />
         <div className={s.itemPriceCol}>
           <Title tag={'h3'} tabIndex={-1}>
             <Link to={`/product/${item.id}`}>
-              {name}
+              {title}
             </Link>
           </Title>
           <span className={s.price}>
@@ -37,33 +48,21 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
       </div>
 
       <div className={s.manageItem}>
-        {!isDeleted ? (
+        {!isDeletedFlag ? (
           <>
             <div className={s.addRemoveButtons}>
-              <ButtonWithChild
-                ariaLabel={'Reduce the number of items'}
-                className={s.button}
-                disabled={countValue <= 0}
-                clickHandler={() => setCountValue(countValue - 1)}>
-                <MinusIcon aria-hidden="true" />
-              </ButtonWithChild>
-              <span tabIndex={0} aria-label={`${countValue} ${countValue > 1 ? 'items' : 'item'}`}>
-                {countValue} {countValue > 1 ? 'items' : 'item'}
-              </span>
-              <ButtonWithChild
-                ariaLabel={'Increase the number of items'}
-                className={s.button}
-                clickHandler={() => setCountValue(countValue + 1)}>
-                <PlusIcon aria-hidden="true" />
-              </ButtonWithChild>
+              <ManageButtonGroup countValue={quantityValue} setCountValue={(quantityValue) => setQuantityValue(quantityValue)}/>
             </div>
-            <button className={s.deleteButton}>Delete</button>
+            <button className={s.deleteButton} onClick={() => deleteClickHandler()}>Delete</button>
           </>
         ) : (
           <div className={s.restoreButtonWrapper}>
             <ButtonWithChild
               className={s.restoreButton}
-              clickHandler={() => console.log('Добавить в корзину')}
+              clickHandler={() => {
+                setIsDeletedValue(false)
+                setQuantityValue(1)
+              }}
               ariaLabel={'Return item to cart'}>
               <CartIcon aria-hidden="true" />
             </ButtonWithChild>

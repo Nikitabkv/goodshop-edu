@@ -36,6 +36,14 @@
   color: $gray-500;
 }
 
+.noItems {
+  width: 100%;
+  font-size: $extra-large;
+  font-weight: $semi-bold;
+  color: $gray-500;
+  line-height: 36px;
+  text-align: center;
+}
 
 @media screen and (max-width: 1040px) {
   .cartRow {

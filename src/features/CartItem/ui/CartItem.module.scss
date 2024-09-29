@@ -129,6 +129,7 @@
 @media screen and (max-width: 740px) {
   .manageItem {
     flex-direction: column;
+    align-items: center;
     gap: 10px;
     flex-basis: 0;
 
@@ -168,5 +169,11 @@
   }
   .deleteButton {
     height: 40px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .manageItem {
+      padding-right: 0;
   }
 }

@@ -3,83 +3,53 @@ import Container from "../../../shared/ui-kit/Container"
 import Title from "../../../shared/ui-kit/Title"
 import ButtonWithChild from "../../../shared/ui-kit/ButtonWithChild"
 import CatalogItem from "../../../features/CatalogItem"
+import {useGetCatalogQuery} from "../../../features/Products/model/api.ts"
+import {useEffect, useState, ChangeEvent} from "react"
+import useDebounce from "../../../hooks/useDebounce.ts"
 
-const mockCatalogItems = [
-  {
-    id: 1,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 2,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 3,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 4,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 1
-  },
-  {
-    id: 5,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 6,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 7,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 8,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 9,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 10,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 11,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  },
-  {
-    id: 12,
-    name: 'Essence Mascara Lash Princess',
-    price: 110,
-    count: 0
-  }
-]
+interface ProductItem {
+  id: number
+  title: string
+  price: number
+  thumbnail: string
+}
+
+const LIMIT = 12
 
 export const CatalogSection = () => {
+  const [products, setProducts] = useState([] as ProductItem[])
+  const [skip, setSkip] = useState(0)
+  const [inputValue, setInputValue] = useState('')
+  const [showMoreClicked, setShowMoreClicked] = useState(false)
+  const debouncedValue = useDebounce(inputValue, 750)
+  const {data, error, isFetching} = useGetCatalogQuery({
+    text: debouncedValue,
+    limit: LIMIT,
+    skip: skip,
+  })
+
+  useEffect(() => {
+    if (data) {
+      if (showMoreClicked) {
+        setProducts(products.concat(data.products))
+        setShowMoreClicked(false)
+      } else {
+        setProducts(data.products)
+      }
+    } else if (error) {
+      console.log(error)
+    }
+  }, [data, error])
+
+  const showMoreHandler = () => {
+    setShowMoreClicked(true)
+    setSkip(skip + LIMIT)
+  }
+
+  const onSearchHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setSkip(0)
+    setInputValue(e.target.value)
+  }
 
   return (
     <Container Tag={'section'} wrapperClassName={s.catalog}>
@@ -87,13 +57,18 @@ export const CatalogSection = () => {
         <Title tag={'h2'}>
           Catalog
         </Title>
-        <input className={s.searchByTitle} type={'text'} placeholder={'Search by title'}/>
+        <input className={s.searchByTitle} type={'text'} placeholder={'Search by title'} value={inputValue} onChange={(e) => onSearchHandler(e)}/>
         <div className={s.catalogItems}>
-          {mockCatalogItems.map(item => <CatalogItem key={item.id} item={item} />)}
+          {isFetching && products.length === 0 && 'Loading...'}
+          {error && 'Unable to load data, please try again later'}
+          {products.map(item => <CatalogItem key={item.id} item={item}/>)}
         </div>
-        <ButtonWithChild ariaLabel={'show more'} className={s.showMore} clickHandler={() => console.log('click')}>
-          Show more
-        </ButtonWithChild>
+        {
+          data && (skip + LIMIT) < data.total &&
+          <ButtonWithChild ariaLabel={'show more'} className={s.showMore} clickHandler={() => showMoreHandler()}>
+            {isFetching ? 'Loading...' : 'Show more'}
+          </ButtonWithChild>
+        }
       </div>
     </Container>
   )
