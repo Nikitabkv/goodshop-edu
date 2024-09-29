@@ -1,6 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+interface Product {
+  id: number
+  quantity: number
+}
+
 export const getCartByUser = createAsyncThunk(
   'cart/getCartByUser',
   async (userId: number, thunkAPI) => {
@@ -19,8 +24,8 @@ export const getCartByUser = createAsyncThunk(
 
 export const updateProduct = createAsyncThunk(
   'cart/updateProduct',
-  //TODO: any
-  async ({products, cartId}: {products: any, cartId: number}, thunkAPI) => {
+  async ({products, cartId}: {products: Array<Product>, cartId: number}, thunkAPI) => {
+    console.log(products)
     try {
       const response = await axios.put(`https://dummyjson.com/auth/carts/${cartId}`, {
         merge: false,
