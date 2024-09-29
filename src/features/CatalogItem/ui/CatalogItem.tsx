@@ -1,8 +1,8 @@
 import s from "./CatalogItem.module.scss"
-import {FC, useEffect} from "react"
+import {FC} from "react"
 import {Link} from "react-router-dom"
 import {useAppSelector} from "../../../App/store/hooks.ts"
-import ManageButtonGroup from "../../ManageButtonGroup";
+import ManageButtonGroup from "../../ManageButtonGroup"
 
 interface CatalogItemProps {
   item: {
@@ -27,10 +27,6 @@ interface ProductState  {
 export const CatalogItem:FC<CatalogItemProps> = ({item}) => {
   const {id, title, price, thumbnail} = item
   const products = useAppSelector((state: ProductState) => state.cart.cartData.products)
-
-  useEffect(() => {
-    console.log(products)
-  }, [products]);
 
   return (
     <Link to={`/product/${id}`}>
