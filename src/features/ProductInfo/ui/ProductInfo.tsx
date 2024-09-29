@@ -75,6 +75,7 @@ export const ProductInfo:FC<ProductInfoProps> = ({item, id}) => {
           </div>
         </div>
         <ManageButtonGroup
+          stock={stock}
           itemId={id}
           countValue={products.find(el => el.id === id)?.quantity || 0}
           buttonClassName={s.buttonClassName}

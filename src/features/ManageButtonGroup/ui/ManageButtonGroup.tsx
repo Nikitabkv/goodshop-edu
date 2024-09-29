@@ -12,6 +12,7 @@ interface ManageButtonGroupProps {
   buttonClassName?: string
   iconSize?: string
   itemId: number
+  stock?: number
 }
 
 const icons = {
@@ -26,7 +27,7 @@ const icons = {
 }
 
 
-export const ManageButtonGroup:FC<ManageButtonGroupProps> = ({countValue, itemId, buttonClassName, cartButtonClassName, iconSize = 's'}) => {
+export const ManageButtonGroup:FC<ManageButtonGroupProps> = ({countValue, stock = 99, itemId, buttonClassName, cartButtonClassName, iconSize = 's'}) => {
   const SizedMinusIcon = icons[iconSize as keyof typeof icons].minus
   const SizedPlusIcon = icons[iconSize as keyof typeof icons].plus
   const products = useAppSelector(state => state.cart.cartData.products)
@@ -91,9 +92,10 @@ export const ManageButtonGroup:FC<ManageButtonGroupProps> = ({countValue, itemId
             tabIndex={0}
             className={s.itemsCount}
           >
-                  {countValue} item{countValue > 1 ? 's' : ''}
-                </span>
+            {countValue} item{countValue > 1 ? 's' : ''}
+          </span>
           <ButtonWithChild
+            disabled={countValue === stock}
             ariaLabel={'Increase the number of items'}
             className={s.button + (buttonClassName ? ' ' + buttonClassName : '')}
             clickHandler={(evt) => updateItemHandler(evt, countValue + 1)}
