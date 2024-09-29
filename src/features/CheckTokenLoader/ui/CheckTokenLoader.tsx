@@ -7,6 +7,19 @@ import {useAppDispatch} from "../../../App/store/hooks.ts"
 import {setUserData} from "../../../pages/Cart/model/cart.slice.ts"
 import {toast} from "react-toastify";
 
+function isErrorWithMessage(
+  error: unknown,
+): error is { data: { message: string }} {
+  return (
+    typeof error === 'object' &&
+    error != null &&
+    'data' in error &&
+    typeof (error as any).data === 'object' &&
+    'message' in (error as any).data &&
+    typeof (error as any).data.message === 'string'
+  )
+}
+
 export const CheckTokenLoader:FC<{children: ReactNode}> = ({children}) => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -25,15 +38,19 @@ export const CheckTokenLoader:FC<{children: ReactNode}> = ({children}) => {
         }
       }
       if (error) {
-        toast.error('Auth Error. Redirecting to the login page');
-        navigate('/login');
+        if (isErrorWithMessage(error)) {
+          toast.error(error.data.message)
+        } else {
+          toast.error('Auth error. Redirecting to the login page');
+        }
+        navigate('/login')
       }
     }
   }, [isLoading]);
 
   return (
     <>
-      {tokenIsChecked ? children :
+      {tokenIsChecked || location.pathname === '/login' ? children :
         <div className={s.loader}></div>
       }
     </>

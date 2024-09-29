@@ -15,7 +15,7 @@ export const Header:FC<{hideNav?: boolean}> = ({hideNav = false}) => {
     <header className={s.header}>
       <Container>
         <div className={s.container}>
-          <Link to={'/'}>
+          <Link to={hideNav ? '/login' : '/'}>
           <span className={s.logo}>
             Goods4you
           </span>
