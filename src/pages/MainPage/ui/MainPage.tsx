@@ -7,7 +7,6 @@ import {useLocation} from "react-router-dom"
 import {useEffect} from "react"
 
 export const MainPage = () => {
-  //TODO: Глянуть как можно сделать правильнее
   const {hash, key} = useLocation()
   useEffect(()=>{
     if(hash){

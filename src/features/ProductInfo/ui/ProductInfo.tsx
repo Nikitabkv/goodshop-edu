@@ -1,6 +1,6 @@
 import s from './ProductInfo.module.scss'
 import Title from "../../../shared/ui-kit/Title"
-import {FC, useState} from "react"
+import {FC} from "react"
 import {useAppSelector} from "../../../App/store/hooks.ts"
 import {ManageButtonGroup} from "../../ManageButtonGroup/ui/ManageButtonGroup.tsx"
 
@@ -18,17 +18,6 @@ interface ProductInfoProps {
   }
   id: number
 }
-interface Product {
-  id: number,
-  quantity: number
-}
-interface ProductState  {
-  cart: {
-    cartData: {
-      products: Product[]
-    }
-  }
-}
 
 export const ProductInfo:FC<ProductInfoProps> = ({item, id}) => {
   const {
@@ -43,9 +32,7 @@ export const ProductInfo:FC<ProductInfoProps> = ({item, id}) => {
     tags,
   } = item
   const discountedPrice = (price - (discountPercentage * price) / 100).toFixed(2)
-  const product = useAppSelector((state: ProductState) =>
-    state.cart.cartData.products.find((product) => product.id === id))
-  const [countValue, setCountValue] = useState(product?.quantity || 0)
+  const products = useAppSelector((state) => state.cart.cartData.products)
 
   return (
     <div className={s.itemInfo}>
@@ -88,8 +75,9 @@ export const ProductInfo:FC<ProductInfoProps> = ({item, id}) => {
           </div>
         </div>
         <ManageButtonGroup
-          countValue={countValue}
-          setCountValue={(value: number) => setCountValue(value)}
+          stock={stock}
+          itemId={id}
+          countValue={products.find(el => el.id === id)?.quantity || 0}
           buttonClassName={s.buttonClassName}
           cartButtonClassName={s.cartButton}
           iconSize={'l'}

@@ -3,7 +3,6 @@ import {useAppSelector} from "../../../App/store/hooks.ts";
 
 export const CartPrices = () => {
   const cartData = useAppSelector((state) => state.cart.cartData)
-  console.log(cartData)
 
   return (
     <>
@@ -20,7 +19,7 @@ export const CartPrices = () => {
           Price without discount
         </span>
         <span className={s.infoPrice}>
-          ${cartData.total}
+          ${cartData.total.toFixed(2)}
         </span>
       </div>
       <hr className={s.hr}/>
@@ -29,7 +28,7 @@ export const CartPrices = () => {
           Total price
         </span>
         <span className={s.infoPrice}>
-          ${cartData.discountedTotal}
+          ${cartData.discountedTotal.toFixed(2)}
         </span>
       </div>
     </>

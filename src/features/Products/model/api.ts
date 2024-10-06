@@ -23,12 +23,15 @@ interface GetCatalogParams {
 export const catalogSectionApi = createApi({
   reducerPath: 'productPageApiApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://dummyjson.com/products/'
+    baseUrl: 'https://dummyjson.com/auth/products/'
   }),
   endpoints: builder => ({
     getCatalog: builder.query<Products, GetCatalogParams>({
       query: params => ({
         url: `search`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('TOKEN')}`
+        },
         params: {
           q: params.text,
           limit: params.limit,
@@ -36,7 +39,12 @@ export const catalogSectionApi = createApi({
         }})
     }),
     getProduct: builder.query({
-      query: (id) => `${id}`
+      query: (id) => ({
+        url: `${id}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('TOKEN')}`
+        },
+      })
     })
   })
 })

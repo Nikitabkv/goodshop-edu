@@ -5,43 +5,35 @@ import Footer from "../widgets/Footer"
 import Cart from "../pages/Cart"
 import Product from "../pages/Product"
 import NotFoundPage from "../pages/NotFoundPage"
-import {useEffect} from "react"
-import {getCartByUser} from "../pages/Cart/model/cartAsyncThunk.ts"
-import {useAppDispatch} from "./store/hooks.ts"
-import 'react-toastify/dist/ReactToastify.css';
-import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+import {ToastContainer} from "react-toastify"
+import {LoginPage} from "../pages/LoginPage/ui/LoginPage.tsx"
+import CheckTokenLoader from "../features/CheckTokenLoader"
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <><Header /><MainPage /><Footer/></>,
+    element: <CheckTokenLoader><Header /><MainPage /><Footer/></CheckTokenLoader>,
   },
   {
     path: "/cart",
-    element: <><Header /><Cart /><Footer/></>,
+    element: <CheckTokenLoader><Header /><Cart /><Footer/></CheckTokenLoader>,
   },
   {
     path: "product/:id",
-    element: <><Header /><Product /><Footer/></>,
+    element: <CheckTokenLoader><Header /><Product /><Footer/></CheckTokenLoader>,
+  },
+  {
+    path: "/login",
+    element: <><Header hideNav={true}/><LoginPage /></>,
   },
   {
     path: "*",
-    element: <><Header /><NotFoundPage /><Footer/></>,
+    element: <CheckTokenLoader><Header /><NotFoundPage /><Footer/></CheckTokenLoader>,
   }
 ])
 
 export const App = () => {
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(getCartByUser(
-      // 14: Корзина пустая
-      // 15: Корзина с 6 товарами
-      // 14
-      15
-    ))
-  }, [])
-
   return (
     <>
       <RouterProvider router={router}/>

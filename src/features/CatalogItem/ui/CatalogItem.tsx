@@ -1,8 +1,8 @@
 import s from "./CatalogItem.module.scss"
-import {FC, useState} from "react"
+import {FC} from "react"
 import {Link} from "react-router-dom"
 import {useAppSelector} from "../../../App/store/hooks.ts"
-import ManageButtonGroup from "../../ManageButtonGroup";
+import ManageButtonGroup from "../../ManageButtonGroup"
 
 interface CatalogItemProps {
   item: {
@@ -26,8 +26,7 @@ interface ProductState  {
 
 export const CatalogItem:FC<CatalogItemProps> = ({item}) => {
   const {id, title, price, thumbnail} = item
-  const product = useAppSelector((state: ProductState) => state.cart.cartData.products.find((product) => product.id === id))
-  const [countValue, setCountValue] = useState(product?.quantity || 0)
+  const products = useAppSelector((state: ProductState) => state.cart.cartData.products)
 
   return (
     <Link to={`/product/${id}`}>
@@ -39,7 +38,7 @@ export const CatalogItem:FC<CatalogItemProps> = ({item}) => {
             <span className={s.price}>${price}</span>
           </div>
           <div className={s.buttons}>
-            <ManageButtonGroup countValue={countValue} setCountValue={(value) => setCountValue(value)} />
+            <ManageButtonGroup countValue={products.find((product) => product.id === id)?.quantity || 0} itemId={id} />
           </div>
         </div>
       </div>
