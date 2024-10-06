@@ -5,6 +5,7 @@ import {Title} from "../../../shared/ui-kit/Title/ui/Title.tsx"
 import ManageButtonGroup from "../../ManageButtonGroup"
 import {updateProduct} from "../../../pages/Cart/model/cartAsyncThunk.ts"
 import {useAppDispatch, useAppSelector} from "../../../App/store/hooks.ts"
+import {addRemovedProduct} from "../../../pages/Cart/model/cart.slice.ts";
 
 interface CartItemProps {
   item: {
@@ -21,6 +22,7 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
   const [isDeletedFlag, setIsDeletedValue] = useState(false)
   const isUpdating = useAppSelector((state) => state.cart.isUpdating)
   const cartId = useAppSelector(state => state.cart.cartData.id)
+  const products = useAppSelector(state => state.cart.cartData.products)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -30,9 +32,19 @@ export const CartItem:FC<CartItemProps> = ({item}) => {
 
   const updateItemHandler = (newQuantity: number) => {
     if (!isUpdating)  {
+      const removedProduct = newQuantity === 0 && products.find(el => el.id === item.id)
+      if (removedProduct) {
+        dispatch(addRemovedProduct(removedProduct))
+      }
       dispatch(updateProduct({
         cartId,
-        products: [{id: item.id, quantity: newQuantity}],
+        products: products.map(el => {
+          if (el.id === item.id) {
+            return {...el, quantity: newQuantity}
+          } else {
+            return el
+          }
+        }).filter(el => el.quantity != 0),
       }))
     }
   }

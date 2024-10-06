@@ -29,16 +29,6 @@ export const Cart = () => {
                 ? (
                   <div className={s.cartRow}>
                     <div className={s.itemsWrapper}>
-                      {/*
-                          Я честно старался сделать
-                          через .concat(), но react мудрит с кеями, а времени не хватает
-                          если убрать key то выходит такое же поведение, не очень красиво, но работает)
-                      */}
-                      {/*
-                         {products.concat(removedProducts).map((item) => (
-                           <CartItem key={item.id} item={item}/>
-                         ))}
-                      */}
                       {products.map((item) => (
                         <CartItem key={item.id} item={item}/>
                       ))}
